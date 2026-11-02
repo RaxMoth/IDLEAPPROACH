@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Examples/Runner/runner_player.gd" id="1_runner_pla"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+[ext_resource type="Script" path="res://Scripts/Components/platformer_movement_component.gd" id="3_platformer"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="4_health_com"]
+[ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="5_hurtbox_co"]
+
+[sub_resource type="RectangleShape2D" id="body"]
+size = Vector2(48, 64)
+
+[sub_resource type="RectangleShape2D" id="hurt"]
+size = Vector2(38, 54)
+
+[node name="RunnerPlayer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_runner_pla")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("body")
+
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -32)
+
+[node name="Body" type="Node2D" parent="Visual"]
+script = ExtResource("2_placeholde")
+shape_kind = 1
+size = Vector2(54, 66)
+color = Color(0.24, 0.55, 1, 1)
+
+[node name="Eye" type="Node2D" parent="Visual"]
+script = ExtResource("2_placeholde")
+shape_kind = 0
+size = Vector2(14, 14)
+color = Color(1, 1, 1, 1)
+position = Vector2(12, -12)
+outline_width = 0.0
+
+[node name="PlatformerMovementComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_platformer")
+jump_height = 230.0
+seconds_to_apex = 0.36
+seconds_to_land = 0.28
+max_jumps = 2
+
+[node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_health_com")
+max_health = 1.0
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+unique_name_in_owner = true
+script = ExtResource("5_hurtbox_co")
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -32)
+shape = SubResource("hurt")

@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Globals/SceneManager/scene_manager.gd" id="1_sm"]
+
+[node name="SceneManager" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_sm")
+
+[node name="FadeRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0784314, 0.0901961, 0.12549, 1)

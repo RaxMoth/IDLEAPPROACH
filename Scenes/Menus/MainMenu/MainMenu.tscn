@@ -1,0 +1,136 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="1_main_menu"]
+[ext_resource type="Script" path="res://Scripts/UI/safe_area_container.gd" id="2_safe_area_"]
+[ext_resource type="Script" path="res://Scripts/UI/currency_display.gd" id="3_currency_d"]
+[ext_resource type="Script" path="res://Scripts/UI/energy_display.gd" id="4_energy_dis"]
+[ext_resource type="Texture2D" path="res://Assets/Icons/settings.svg" id="5_settings"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main_menu")
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_safe_area_")
+
+[node name="Layout" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="TopBar" type="HBoxContainer" parent="SafeArea/Layout"]
+layout_mode = 2
+
+[node name="CoinsDisplay" type="PanelContainer" parent="SafeArea/Layout/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("3_currency_d")
+currency_id = &"coins"
+
+[node name="GemsDisplay" type="PanelContainer" parent="SafeArea/Layout/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("3_currency_d")
+currency_id = &"gems"
+
+[node name="EnergyDisplay" type="PanelContainer" parent="SafeArea/Layout/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("4_energy_dis")
+
+[node name="TopSpacer" type="Control" parent="SafeArea/Layout/TopBar"]
+mouse_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsButton" type="Button" parent="SafeArea/Layout/TopBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(92, 92)
+theme_type_variation = &"IconButton"
+icon = ExtResource("5_settings")
+icon_alignment = 1
+
+[node name="Spacer1" type="Control" parent="SafeArea/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="SafeArea/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "Base Template"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="SubtitleLabel" type="Label" parent="SafeArea/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "★ 0 / 0"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="SafeArea/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Buttons" type="VBoxContainer" parent="SafeArea/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PlayButton" type="Button" parent="SafeArea/Layout/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 128)
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="Row" type="HBoxContainer" parent="SafeArea/Layout/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ShopButton" type="Button" parent="SafeArea/Layout/Buttons/Row"]
+custom_minimum_size = Vector2(0, 100)
+theme_type_variation = &"SecondaryButton"
+text = "Shop"
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AchievementsButton" type="Button" parent="SafeArea/Layout/Buttons/Row"]
+custom_minimum_size = Vector2(0, 100)
+theme_type_variation = &"SecondaryButton"
+text = "Achievements"
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DailyRewardButton" type="Button" parent="SafeArea/Layout/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 100)
+theme_type_variation = &"SuccessButton"
+text = "Daily Reward"
+
+[node name="QuitButton" type="Button" parent="SafeArea/Layout/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 88)
+theme_type_variation = &"SecondaryButton"
+text = "Quit"
+
+[connection signal="pressed" from="SafeArea/Layout/TopBar/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="SafeArea/Layout/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SafeArea/Layout/Buttons/Row/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="SafeArea/Layout/Buttons/Row/AchievementsButton" to="." method="_on_achievements_button_pressed"]
+[connection signal="pressed" from="SafeArea/Layout/Buttons/DailyRewardButton" to="." method="_on_daily_reward_button_pressed"]
+[connection signal="pressed" from="SafeArea/Layout/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

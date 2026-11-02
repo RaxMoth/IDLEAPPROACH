@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Components/projectile.gd" id="1_projectile"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+
+[sub_resource type="CircleShape2D" id="circle_bullet"]
+radius = 9.0
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 17
+script = ExtResource("1_projectile")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("circle_bullet")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("2_placeholde")
+shape_kind = 4
+size = Vector2(30, 14)
+color = Color(1, 0.85, 0.3, 1)
+outline_width = 0.0

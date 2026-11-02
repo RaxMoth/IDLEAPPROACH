@@ -1,0 +1,148 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Entities/TopDownPlayer/top_down_player.gd" id="1_top_down_p"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+[ext_resource type="Script" path="res://Scripts/Components/velocity_component.gd" id="3_velocity_c"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="4_health_com"]
+[ext_resource type="Script" path="res://Scripts/Components/hurtbox_component.gd" id="5_hurtbox_co"]
+[ext_resource type="Script" path="res://Scripts/Components/collector_component.gd" id="6_collector_"]
+[ext_resource type="Script" path="res://Scripts/Components/targeting_component.gd" id="7_targeting_"]
+[ext_resource type="PackedScene" path="res://Scenes/Entities/Projectile/Projectile.tscn" id="8_Projectile"]
+[ext_resource type="Script" path="res://Scripts/Components/shooter_component.gd" id="9_shooter_co"]
+[ext_resource type="Script" path="res://Scripts/Components/stats_component.gd" id="10_stats_comp"]
+[ext_resource type="Script" path="res://Scripts/Components/hit_flash_component.gd" id="11_hit_flash_"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="12_state_char"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="13_compound_s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="14_atomic_sta"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="15_transition"]
+
+[sub_resource type="CircleShape2D" id="body"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="hurt"]
+radius = 26.0
+
+[node name="TopDownPlayer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_top_down_p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("body")
+
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_placeholde")
+shape_kind = 0
+size = Vector2(60, 60)
+color = Color(0.24, 0.55, 1, 1)
+
+[node name="Eye" type="Node2D" parent="Visual"]
+script = ExtResource("2_placeholde")
+shape_kind = 0
+size = Vector2(16, 16)
+color = Color(1, 1, 1, 1)
+position = Vector2(12, -8)
+outline_width = 0.0
+
+[node name="VelocityComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_velocity_c")
+max_speed = 320.0
+
+[node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_health_com")
+max_health = 100.0
+invulnerability_seconds = 0.6
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+unique_name_in_owner = true
+script = ExtResource("5_hurtbox_co")
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("hurt")
+
+[node name="CollectorComponent" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_collector_")
+collision_layer = 0
+collision_mask = 32
+magnet_radius = 130.0
+
+[node name="TargetingComponent" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_targeting_")
+collision_layer = 0
+collision_mask = 16
+detection_radius = 460.0
+target_group = &"enemy"
+
+[node name="ShooterComponent" type="Marker2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_shooter_co")
+projectile_scene = ExtResource("8_Projectile")
+hit_mask = 16
+shots_per_second = 2.5
+damage = 12.0
+spread_degrees = 10.0
+
+[node name="StatsComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_stats_comp")
+
+[node name="HitFlashComponent" type="Node" parent="." node_paths=PackedStringArray("flash_target", "health_component")]
+unique_name_in_owner = true
+script = ExtResource("11_hit_flash_")
+flash_target = NodePath("../Visual")
+health_component = NodePath("../HealthComponent")
+
+[node name="StateChart" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("12_state_char")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("13_compound_s")
+initial_state = NodePath("Alive")
+
+[node name="Alive" type="Node" parent="StateChart/Root"]
+script = ExtResource("13_compound_s")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root/Alive"]
+script = ExtResource("14_atomic_sta")
+
+[node name="Moving" type="Node" parent="StateChart/Root/Alive"]
+script = ExtResource("14_atomic_sta")
+
+[node name="Dead" type="Node" parent="StateChart/Root"]
+script = ExtResource("14_atomic_sta")
+
+[node name="ToMoving" type="Node" parent="StateChart/Root/Alive/Idle"]
+script = ExtResource("15_transition")
+to = NodePath("../../Moving")
+event = &"move_started"
+delay_in_seconds = "0.0"
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Alive/Moving"]
+script = ExtResource("15_transition")
+to = NodePath("../../Idle")
+event = &"move_stopped"
+delay_in_seconds = "0.0"
+
+[node name="ToDead" type="Node" parent="StateChart/Root/Alive"]
+script = ExtResource("15_transition")
+to = NodePath("../../Dead")
+event = &"died"
+delay_in_seconds = "0.0"
+
+[connection signal="state_physics_processing" from="StateChart/Root/Alive" to="." method="_on_alive_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Alive/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Alive/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Alive/Moving" to="." method="_on_moving_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Alive/Moving" to="." method="_on_moving_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Dead" to="." method="_on_dead_state_entered"]

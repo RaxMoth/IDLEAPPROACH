@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Entities/ChaserEnemy/ChaserEnemy.tscn" id="1_ChaserEnem"]
+
+[node name="BruteEnemy" instance=ExtResource("1_ChaserEnem")]
+base_max_health = 110.0
+base_move_speed = 78.0
+score_value = 30
+
+[node name="Visual" parent="."]
+size = Vector2(84, 78)
+color = Color(0.7, 0.35, 0.95, 1)
+
+[node name="HitboxComponent" parent="."]
+damage = 20.0

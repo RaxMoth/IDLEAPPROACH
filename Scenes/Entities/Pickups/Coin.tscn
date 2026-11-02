@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/Components/pickup.gd" id="1_pickup"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+
+[sub_resource type="CircleShape2D" id="circle_pickup"]
+radius = 14.0
+
+[node name="Coin" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_pickup")
+pickup_id = &"coins"
+amount = 1
+lifetime_seconds = 30.0
+collect_sound_preset = &"coin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("circle_pickup")
+
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("2_placeholde")
+shape_kind = 0
+size = Vector2(24, 24)
+color = Color(1, 0.8, 0.2, 1)

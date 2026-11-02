@@ -1,0 +1,55 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Examples/TowerDefense/td_tower.gd" id="1_td_tower"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+[ext_resource type="Script" path="res://Scripts/Components/targeting_component.gd" id="3_targeting_"]
+[ext_resource type="PackedScene" path="res://Scenes/Entities/Projectile/Projectile.tscn" id="4_Projectile"]
+[ext_resource type="Script" path="res://Scripts/Components/shooter_component.gd" id="5_shooter_co"]
+
+[node name="TDTower" type="Node2D"]
+script = ExtResource("1_td_tower")
+
+[node name="RangeIndicator" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_placeholde")
+shape_kind = 0
+size = Vector2(380, 380)
+color = Color(1, 1, 1, 0.06)
+outline_color = Color(1, 1, 1, 0.35)
+outline_width = 3.0
+
+[node name="Base" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_placeholde")
+shape_kind = 1
+size = Vector2(64, 64)
+color = Color(0.42, 0.47, 0.6, 1)
+
+[node name="Turret" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Barrel" type="Node2D" parent="Turret"]
+script = ExtResource("2_placeholde")
+shape_kind = 2
+size = Vector2(48, 36)
+color = Color(0.4, 0.85, 1, 1)
+position = Vector2(10, 0)
+
+[node name="TargetingComponent" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_targeting_")
+collision_layer = 0
+collision_mask = 16
+detection_radius = 190.0
+target_group = &"enemy"
+target_priority = 4
+
+[node name="ShooterComponent" type="Marker2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_shooter_co")
+projectile_scene = ExtResource("4_Projectile")
+hit_mask = 16
+shots_per_second = 1.4
+damage = 14.0
+projectile_speed_override = 650.0
+homing_turn_rate = 10.0

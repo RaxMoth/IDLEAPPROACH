@@ -1,0 +1,122 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Game/LevelBase/LevelBase.tscn" id="1_LevelBase"]
+[ext_resource type="Script" path="res://Scenes/Examples/Runner/runner_level.gd" id="2_runner_lev"]
+[ext_resource type="Resource" path="res://Ressources/Levels/runner.tres" id="3_runner"]
+[ext_resource type="PackedScene" path="res://Scenes/Examples/Runner/ObstacleLow.tscn" id="4_ObstacleLo"]
+[ext_resource type="PackedScene" path="res://Scenes/Examples/Runner/ObstacleTall.tscn" id="5_ObstacleTa"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="6_placeholde"]
+[ext_resource type="PackedScene" path="res://Scenes/Examples/Runner/RunnerPlayer.tscn" id="7_RunnerPlay"]
+[ext_resource type="Script" path="res://Scripts/Input/gesture_detector.gd" id="8_gesture_de"]
+
+[sub_resource type="RectangleShape2D" id="ground"]
+size = Vector2(3000, 300)
+
+[node name="Runner" instance=ExtResource("1_LevelBase")]
+script = ExtResource("2_runner_lev")
+level_data = ExtResource("3_runner")
+show_intro_countdown = true
+obstacle_scenes = Array[PackedScene]([ExtResource("4_ObstacleLo"), ExtResource("5_ObstacleTa")])
+
+[node name="FarLayer" type="Parallax2D" parent="World"]
+unique_name_in_owner = true
+z_index = -20
+repeat_size = Vector2(720, 0)
+repeat_times = 3
+
+[node name="Mountain0" type="Node2D" parent="World/FarLayer"]
+script = ExtResource("6_placeholde")
+shape_kind = 2
+size = Vector2(360, 300)
+color = Color(0.16, 0.19, 0.29, 1)
+position = Vector2(80, 780)
+rotation = -1.5708
+outline_width = 0.0
+
+[node name="Mountain1" type="Node2D" parent="World/FarLayer"]
+script = ExtResource("6_placeholde")
+shape_kind = 2
+size = Vector2(260, 300)
+color = Color(0.16, 0.19, 0.29, 1)
+position = Vector2(300, 830)
+rotation = -1.5708
+outline_width = 0.0
+
+[node name="Mountain2" type="Node2D" parent="World/FarLayer"]
+script = ExtResource("6_placeholde")
+shape_kind = 2
+size = Vector2(420, 300)
+color = Color(0.16, 0.19, 0.29, 1)
+position = Vector2(520, 750)
+rotation = -1.5708
+outline_width = 0.0
+
+[node name="NearLayer" type="Parallax2D" parent="World"]
+unique_name_in_owner = true
+z_index = -15
+repeat_size = Vector2(720, 0)
+repeat_times = 3
+
+[node name="Bush0" type="Node2D" parent="World/NearLayer"]
+script = ExtResource("6_placeholde")
+shape_kind = 0
+size = Vector2(130, 130)
+color = Color(0.18, 0.3, 0.27, 1)
+position = Vector2(60, 960)
+outline_width = 0.0
+
+[node name="Bush1" type="Node2D" parent="World/NearLayer"]
+script = ExtResource("6_placeholde")
+shape_kind = 0
+size = Vector2(130, 130)
+color = Color(0.18, 0.3, 0.27, 1)
+position = Vector2(260, 960)
+outline_width = 0.0
+
+[node name="Bush2" type="Node2D" parent="World/NearLayer"]
+script = ExtResource("6_placeholde")
+shape_kind = 0
+size = Vector2(130, 130)
+color = Color(0.18, 0.3, 0.27, 1)
+position = Vector2(470, 960)
+outline_width = 0.0
+
+[node name="Bush3" type="Node2D" parent="World/NearLayer"]
+script = ExtResource("6_placeholde")
+shape_kind = 0
+size = Vector2(130, 130)
+color = Color(0.18, 0.3, 0.27, 1)
+position = Vector2(640, 960)
+outline_width = 0.0
+
+[node name="Ground" type="StaticBody2D" parent="World"]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground"]
+position = Vector2(360, 1110)
+shape = SubResource("ground")
+
+[node name="Visual" type="Node2D" parent="World/Ground"]
+script = ExtResource("6_placeholde")
+shape_kind = 1
+size = Vector2(3000, 400)
+color = Color(0.22, 0.25, 0.34, 1)
+position = Vector2(360, 1160)
+outline_width = 0.0
+
+[node name="Edge" type="Node2D" parent="World/Ground"]
+script = ExtResource("6_placeholde")
+shape_kind = 1
+size = Vector2(3000, 10)
+color = Color(0.45, 0.85, 0.6, 1)
+position = Vector2(360, 963)
+outline_width = 0.0
+
+[node name="Player" parent="World" instance=ExtResource("7_RunnerPlay")]
+unique_name_in_owner = true
+position = Vector2(180, 960)
+
+[node name="GestureDetector" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_gesture_de")

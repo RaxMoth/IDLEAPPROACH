@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Game/LevelBase/LevelBase.tscn" id="1_LevelBase"]
+[ext_resource type="Script" path="res://Scenes/Examples/Match3/match3_level.gd" id="2_match3_lev"]
+[ext_resource type="Resource" path="res://Ressources/Levels/match3.tres" id="3_match3"]
+[ext_resource type="Script" path="res://Scripts/Utils/grid_background.gd" id="4_grid_backg"]
+[ext_resource type="Script" path="res://Scripts/Input/gesture_detector.gd" id="5_gesture_de"]
+
+[node name="Match3" instance=ExtResource("1_LevelBase")]
+script = ExtResource("2_match3_lev")
+level_data = ExtResource("3_match3")
+
+[node name="BoardBackground" type="Node2D" parent="World"]
+unique_name_in_owner = true
+script = ExtResource("4_grid_backg")
+checkerboard = true
+fill_color = Color(0.13, 0.15, 0.21, 1)
+alternate_color = Color(0.17, 0.19, 0.26, 1)
+
+[node name="Board" type="Node2D" parent="World"]
+unique_name_in_owner = true
+
+[node name="GestureDetector" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_gesture_de")

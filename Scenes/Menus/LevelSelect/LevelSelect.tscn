@@ -1,0 +1,69 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Menus/LevelSelect/level_select.gd" id="1_level_sele"]
+[ext_resource type="Script" path="res://Scripts/UI/safe_area_container.gd" id="2_safe_area_"]
+[ext_resource type="Texture2D" path="res://Assets/Icons/back.svg" id="3_back"]
+[ext_resource type="Script" path="res://Scripts/UI/energy_display.gd" id="4_energy_dis"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_level_sele")
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_safe_area_")
+
+[node name="Layout" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="TopBar" type="HBoxContainer" parent="SafeArea/Layout"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="SafeArea/Layout/TopBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(92, 92)
+theme_type_variation = &"IconButton"
+icon = ExtResource("3_back")
+icon_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="SafeArea/Layout/TopBar"]
+theme_type_variation = &"HeaderLabel"
+text = "Levels"
+horizontal_alignment = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StarsLabel" type="Label" parent="SafeArea/Layout/TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "★ 0"
+theme_override_colors/font_color = Color(1, 0.82, 0.25, 1)
+
+[node name="EnergyDisplay" type="PanelContainer" parent="SafeArea/Layout"]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("4_energy_dis")
+
+[node name="Scroll" type="ScrollContainer" parent="SafeArea/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LevelList" type="VBoxContainer" parent="SafeArea/Layout/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
+
+[connection signal="pressed" from="SafeArea/Layout/TopBar/BackButton" to="." method="_on_back_button_pressed"]
