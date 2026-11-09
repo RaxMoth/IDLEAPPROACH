@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="HeroData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/hero_data.gd" id="1_hero_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/star_bonus.gd" id="star_bonus_script"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/elf.tres" id="3_race"]
+[ext_resource type="Resource" path="res://Ressources/Skills/skill_arrow_volley.tres" id="2_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Attacks/attack_arrow.tres" id="9_attack_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Heroes/archer.png" id="20_art"]
+
+[sub_resource type="Resource" id="star_1"]
+script = ExtResource("star_bonus_script")
+stat = 2
+amount = 0.1
+scope = 0
+
+[sub_resource type="Resource" id="star_2"]
+script = ExtResource("star_bonus_script")
+stat = 0
+amount = 0.1
+scope = 1
+
+[sub_resource type="Resource" id="star_3"]
+script = ExtResource("star_bonus_script")
+stat = 0
+amount = 0.5
+scope = 2
+race = ExtResource("3_race")
+
+[sub_resource type="Resource" id="star_4"]
+script = ExtResource("star_bonus_script")
+stat = 5
+amount = 0.1
+scope = 0
+
+[sub_resource type="Resource" id="star_5"]
+script = ExtResource("star_bonus_script")
+stat = 2
+amount = 0.2
+scope = 1
+
+[resource]
+script = ExtResource("1_hero_data")
+id = &"archer"
+race = ExtResource("3_race")
+rarity = 0
+display_name = "Archer"
+role = "Shoots from far behind the line"
+color = Color(0.45, 0.85, 0.45, 1)
+shape_kind = 2
+visual_size = Vector2(60, 60)
+skill = ExtResource("2_skill")
+attack_style = 1
+base_damage = 7.0
+attack_interval_seconds = 1.1
+base_health = 35.0
+defense = 0.0
+crit_chance = 0.12
+crit_multiplier = 2.0
+move_speed = 150.0
+attack_range = 230.0
+base_cost = 50.0
+cost_growth = 1.075
+attack_sound = ExtResource("9_attack_sound")
+icon = ExtResource("20_art")
+star_bonuses = Array[ExtResource("star_bonus_script")]([SubResource("star_1"), SubResource("star_2"), SubResource("star_3"), SubResource("star_4"), SubResource("star_5")])

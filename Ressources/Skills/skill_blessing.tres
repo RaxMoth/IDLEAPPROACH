@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="HealSkill" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skills/heal_skill.gd" id="1_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Skills/skill_heal.tres" id="9_cast_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/skill_heal.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_skill")
+hero_heal_fraction = 0.3
+base_heal_fraction = 0.0
+effect_color = Color(1.0, 0.92, 0.45, 1)
+id = &"blessing"
+title = "Blessing"
+cooldown_seconds = 10.0
+cast_sound = ExtResource("9_cast_sound")
+icon = ExtResource("20_icon")

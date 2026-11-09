@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RelicData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/relic_data.gd" id="1_relic_data"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/bastion_stone.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_relic_data")
+effect = 3
+id = &"relic_bastion_stone"
+title = "Bastion Stone"
+description = "Your base can take more hits."
+currency_id = &"souls"
+base_cost = 1
+cost_growth = 1.4
+value_per_level = 0.5
+show_in_shop = false
+icon = ExtResource("20_icon")

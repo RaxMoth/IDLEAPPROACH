@@ -1,0 +1,298 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/UI/Popups/HeroPopup/hero_popup.gd" id="1_hero_popup"]
+[ext_resource type="Script" path="res://Scripts/UI/star_ladder.gd" id="2_star_ladder"]
+[ext_resource type="Script" path="res://Scripts/UI/stat_grid.gd" id="3_stat_grid"]
+[ext_resource type="Script" path="res://Scripts/UI/icon_value.gd" id="4_icon_value"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/cooldown.png" id="5_cooldown"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/shards.png" id="6_shards"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/gems.png" id="7_gems"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/star.png" id="8_star"]
+[ext_resource type="Texture2D" path="res://Assets/Art/UI/bar_purple.png" id="20_bar_purple"]
+[ext_resource type="Texture2D" path="res://Assets/Art/UI/portrait_frame.png" id="21_frame"]
+
+[sub_resource type="StyleBoxTexture" id="shard_fill"]
+texture = ExtResource("20_bar_purple")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[node name="HeroPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hero_popup")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="CenterContainer/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PortraitFrame" type="Control" parent="CenterContainer/Panel/Content/Header"]
+custom_minimum_size = Vector2(124, 124)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Portrait" type="ColorRect" parent="CenterContainer/Panel/Content/Header/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.17, 0.15, 0.17, 1)
+
+[node name="PortraitArt" type="TextureRect" parent="CenterContainer/Panel/Content/Header/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RarityFrame" type="NinePatchRect" parent="CenterContainer/Panel/Content/Header/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("21_frame")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="InitialLabel" type="Label" parent="CenterContainer/Panel/Content/Header/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderLabel"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
+theme_override_constants/outline_size = 8
+text = "H"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Titles" type="VBoxContainer" parent="CenterContainer/Panel/Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="CenterContainer/Panel/Content/Header/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Hero"
+autowrap_mode = 3
+
+[node name="RarityLabel" type="Label" parent="CenterContainer/Panel/Content/Header/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Common"
+
+[node name="TagRow" type="HBoxContainer" parent="CenterContainer/Panel/Content/Header/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="StarLadder" type="HBoxContainer" parent="CenterContainer/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("2_star_ladder")
+
+[node name="SkillPanel" type="PanelContainer" parent="CenterContainer/Panel/Content"]
+layout_mode = 2
+theme_type_variation = &"CardPanel"
+
+[node name="SkillContent" type="VBoxContainer" parent="CenterContainer/Panel/Content/SkillPanel"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SkillHeader" type="HBoxContainer" parent="CenterContainer/Panel/Content/SkillPanel/SkillContent"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SkillIcon" type="TextureRect" parent="CenterContainer/Panel/Content/SkillPanel/SkillContent/SkillHeader"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SkillTitleLabel" type="Label" parent="CenterContainer/Panel/Content/SkillPanel/SkillContent/SkillHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skill"
+text_overrun_behavior = 3
+
+[node name="SkillCooldown" type="HBoxContainer" parent="CenterContainer/Panel/Content/SkillPanel/SkillContent/SkillHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_icon_value")
+icon = ExtResource("5_cooldown")
+icon_size = 36.0
+
+[node name="SkillDescriptionLabel" type="Label" parent="CenterContainer/Panel/Content/SkillPanel/SkillContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+autowrap_mode = 3
+
+[node name="StatGrid" type="GridContainer" parent="CenterContainer/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+script = ExtResource("3_stat_grid")
+
+[node name="ShardRow" type="HBoxContainer" parent="CenterContainer/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ShardIcon" type="TextureRect" parent="CenterContainer/Panel/Content/ShardRow"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_shards")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShardBar" type="ProgressBar" parent="CenterContainer/Panel/Content/ShardRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/fill = SubResource("shard_fill")
+max_value = 10.0
+show_percentage = false
+
+[node name="ShardLabel" type="Label" parent="CenterContainer/Panel/Content/ShardRow/ShardBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SmallLabel"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyShardsButton" type="Button" parent="CenterContainer/Panel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_type_variation = &"SecondaryButton"
+
+[node name="BuyShardsContent" type="HBoxContainer" parent="CenterContainer/Panel/Content/BuyShardsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="BuyShardsAmount" type="HBoxContainer" parent="CenterContainer/Panel/Content/BuyShardsButton/BuyShardsContent"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_icon_value")
+icon = ExtResource("6_shards")
+text = "+5"
+icon_size = 44.0
+
+[node name="BuyShardsPrice" type="HBoxContainer" parent="CenterContainer/Panel/Content/BuyShardsButton/BuyShardsContent"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_icon_value")
+icon = ExtResource("7_gems")
+text = "20"
+icon_size = 40.0
+
+[node name="Buttons" type="HBoxContainer" parent="CenterContainer/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CloseButton" type="Button" parent="CenterContainer/Panel/Content/Buttons"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SecondaryButton"
+text = "Close"
+
+[node name="StarUpButton" type="Button" parent="CenterContainer/Panel/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SuccessButton"
+theme_override_constants/icon_max_width = 48
+text = "+1"
+icon = ExtResource("8_star")
+
+[connection signal="pressed" from="CenterContainer/Panel/Content/BuyShardsButton" to="." method="_on_buy_shards_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/Content/Buttons/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/Content/Buttons/StarUpButton" to="." method="_on_star_up_button_pressed"]

@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="HeroData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/hero_data.gd" id="1_hero_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/star_bonus.gd" id="star_bonus_script"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/dwarf.tres" id="3_race"]
+[ext_resource type="Resource" path="res://Ressources/Skills/skill_blessing.tres" id="2_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Attacks/attack_blunt.tres" id="9_attack_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Heroes/cleric.png" id="20_art"]
+
+[sub_resource type="Resource" id="star_1"]
+script = ExtResource("star_bonus_script")
+stat = 3
+amount = 0.05
+scope = 0
+
+[sub_resource type="Resource" id="star_2"]
+script = ExtResource("star_bonus_script")
+stat = 1
+amount = 0.15
+scope = 1
+
+[sub_resource type="Resource" id="star_3"]
+script = ExtResource("star_bonus_script")
+stat = 3
+amount = 0.1
+scope = 2
+race = ExtResource("3_race")
+
+[sub_resource type="Resource" id="star_4"]
+script = ExtResource("star_bonus_script")
+stat = 1
+amount = 0.5
+scope = 0
+
+[sub_resource type="Resource" id="star_5"]
+script = ExtResource("star_bonus_script")
+stat = 3
+amount = 0.08
+scope = 1
+
+[resource]
+script = ExtResource("1_hero_data")
+id = &"cleric"
+race = ExtResource("3_race")
+rarity = 1
+display_name = "Cleric"
+role = "Tough hammer fighter"
+color = Color(1.0, 0.9, 0.5, 1)
+shape_kind = 5
+visual_size = Vector2(64, 64)
+skill = ExtResource("2_skill")
+attack_style = 0
+base_damage = 70.0
+attack_interval_seconds = 1.2
+base_health = 400.0
+defense = 0.25
+crit_chance = 0.05
+crit_multiplier = 2.0
+move_speed = 150.0
+attack_range = 36.0
+base_cost = 7000.0
+cost_growth = 1.075
+attack_sound = ExtResource("9_attack_sound")
+icon = ExtResource("20_art")
+star_bonuses = Array[ExtResource("star_bonus_script")]([SubResource("star_1"), SubResource("star_2"), SubResource("star_3"), SubResource("star_4"), SubResource("star_5")])

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterRace" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/monster_race.gd" id="1_race"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/race_goblinoid.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_race")
+id = &"goblinoid"
+display_name = "Goblinoid"
+color = Color(0.45, 0.75, 0.35, 1)
+trait_description = "Arrives in bigger groups."
+extra_spawns = 1
+icon = ExtResource("20_icon")

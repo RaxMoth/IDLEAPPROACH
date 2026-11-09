@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/level_data.gd" id="1_level_data"]
+
+[resource]
+script = ExtResource("1_level_data")
+id = &"battle"
+title = "Battle"
+description = "Idle base battle: heroes fight on their own, break the enemy base, climb stages."
+scene_path = "res://Scenes/Game/Battle/Battle.tscn"
+star_score_thresholds = Array[int]([25, 100, 250])
+is_endless = true
+always_unlocked = true
+energy_cost = 0

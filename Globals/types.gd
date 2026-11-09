@@ -19,6 +19,8 @@ enum ProductType { CONSUMABLE, NON_CONSUMABLE, SUBSCRIPTION }
 enum SwipeDirection { NONE, UP, DOWN, LEFT, RIGHT }
 enum LevelOutcome { NONE, WON, LOST, QUIT }
 enum StatModifierKind { FLAT, PERCENT }
+## Where a lane fighter moves: ground melee can't hit AIR; ranged and AIR units hit both.
+enum UnitLayer { GROUND, AIR }
 
 # ============================================
 # PHYSICS LAYERS (bit values, keep in sync with [layer_names] in project.godot)
@@ -60,6 +62,12 @@ const ACTION_DEBUG_TOGGLE: StringName = &"debug_toggle"
 
 const CURRENCY_COINS: StringName = &"coins"
 const CURRENCY_GEMS: StringName = &"gems"
+## Prestige currency earned by rebirthing, spent on relics (Profile.wallet).
+const CURRENCY_SOULS: StringName = &"souls"
+## Opens one hero chest (dropped by first clears of every few stages).
+const CURRENCY_KEYS: StringName = &"keys"
+## Idle-scale battle currency stored as float (Profile.idle_wallet).
+const CURRENCY_GOLD: StringName = &"gold"
 const ITEM_NO_ADS: StringName = &"no_ads"
 
 # ============================================
@@ -73,6 +81,15 @@ const STAT_COINS_EARNED: StringName = &"coins_earned"
 const STAT_TAPS: StringName = &"taps"
 const STAT_BEST_RUNNER_SCORE: StringName = &"best_runner_score"
 const STAT_MATCHES_MADE: StringName = &"matches_made"
+const STAT_HIGHEST_STAGE: StringName = &"highest_stage"
+const STAT_BOSSES_DEFEATED: StringName = &"bosses_defeated"
+const STAT_BASES_DESTROYED: StringName = &"bases_destroyed"
+const STAT_FLYERS_DEFEATED: StringName = &"flyers_defeated"
+const STAT_HEROES_COLLECTED: StringName = &"heroes_collected"
+const STAT_INCOME_SOURCES_OWNED: StringName = &"income_sources_owned"
+const STAT_TOTAL_STARS: StringName = &"total_stars"
+const STAT_REBIRTHS: StringName = &"rebirths"
+const STAT_GOLD_EARNED: StringName = &"gold_earned"
 
 # ============================================
 # ENTITY STAT IDS (used by StatsComponent / StatModifier / PerkData)
@@ -94,6 +111,22 @@ const EVENT_PAUSE: StringName = &"pause"
 const EVENT_RESUME: StringName = &"resume"
 const EVENT_WIN: StringName = &"win"
 const EVENT_LOSE: StringName = &"lose"
+
+# ============================================
+# STATE CHART EVENTS — battle stage flow (Scenes/Game/Battle/Battle.tscn)
+# ============================================
+
+## Resets both bases, clears the field and starts the current stage (start, rebirth).
+const EVENT_STAGE_RESTART: StringName = &"stage_restart"
+## The player's squad destroyed the enemy base: one stage up.
+const EVENT_ENEMY_BASE_DESTROYED: StringName = &"enemy_base_destroyed"
+## The monsters destroyed the player's base: one stage down.
+const EVENT_PLAYER_BASE_DESTROYED: StringName = &"player_base_destroyed"
+## Expression properties read by StateChart delays.
+const EXPRESSION_STAGE_END_SECONDS: StringName = &"stage_end_seconds"
+const EXPRESSION_RESPAWN_SECONDS: StringName = &"respawn_seconds"
+## Per-hero wait at the base before marching out, so the squad leaves in a line.
+const EXPRESSION_RELEASE_SECONDS: StringName = &"release_seconds"
 
 # ============================================
 # STATE CHART EVENTS — entities (Scenes/Entities/*)
@@ -123,6 +156,8 @@ const METHOD_RECEIVE_SCENE_PARAMS: StringName = &"receive_scene_params"
 const METHOD_HANDLE_BACK: StringName = &"handle_back"
 ## Called by WaveSpawner after spawning an enemy so it can scale itself.
 const METHOD_APPLY_WAVE_MODIFIERS: StringName = &"apply_wave_modifiers"
+## Lane fighters / bases return where shots and effects should aim (their body).
+const METHOD_GET_AIM_POINT: StringName = &"get_aim_point"
 
 # ============================================
 # SCENE PARAM KEYS (SceneManager.change_scene params dictionary)

@@ -1,0 +1,189 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/safe_area_container.gd" id="safe_area_script"]
+[ext_resource type="Script" path="res://Scenes/UI/StageBar/stage_bar.gd" id="1_stage_bar"]
+[ext_resource type="Script" path="res://Scenes/UI/StageBar/lane_minimap.gd" id="2_lane_minim"]
+[ext_resource type="Script" path="res://Scripts/UI/icon_value.gd" id="3_icon_value"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/gold.png" id="4_gold"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/income_rate.png" id="5_income"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/dps.png" id="6_dps"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/base_player.png" id="7_base_player"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/base_enemy.png" id="8_base_enemy"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/enemy_power.png" id="9_enemy_power"]
+[ext_resource type="Texture2D" path="res://Assets/Art/UI/bar_blue.png" id="20_bar_blue"]
+[ext_resource type="Texture2D" path="res://Assets/Art/UI/bar_red.png" id="21_bar_red"]
+
+[sub_resource type="StyleBoxTexture" id="player_base_fill"]
+texture = ExtResource("20_bar_blue")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="enemy_base_fill"]
+texture = ExtResource("21_bar_red")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[node name="StageBar" type="PanelContainer"]
+theme_type_variation = &"DockTopPanel"
+script = ExtResource("1_stage_bar")
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("safe_area_script")
+base_margin = 0
+apply_top = true
+apply_bottom = false
+
+[node name="Content" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="TopRow" type="HBoxContainer" parent="SafeArea/Content"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PauseButtonGap" type="Control" parent="SafeArea/Content/TopRow"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="StageInfo" type="VBoxContainer" parent="SafeArea/Content/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="ZoneLabel" type="Label" parent="SafeArea/Content/TopRow/StageInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Zone"
+text_overrun_behavior = 3
+
+[node name="StageLabel" type="Label" parent="SafeArea/Content/TopRow/StageInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Stage 1"
+text_overrun_behavior = 3
+
+[node name="GoldInfo" type="VBoxContainer" parent="SafeArea/Content/TopRow"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="GoldValue" type="HBoxContainer" parent="SafeArea/Content/TopRow/GoldInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_icon_value")
+icon = ExtResource("4_gold")
+icon_size = 44.0
+label_variation = &"HeaderLabel"
+alignment = 2
+value_color = Color(1, 0.84, 0.3, 1)
+
+[node name="StatsRow" type="HBoxContainer" parent="SafeArea/Content/TopRow/GoldInfo"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="IncomeValue" type="HBoxContainer" parent="SafeArea/Content/TopRow/GoldInfo/StatsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_icon_value")
+icon = ExtResource("5_income")
+icon_size = 28.0
+label_variation = &"SmallLabel"
+
+[node name="DpsValue" type="HBoxContainer" parent="SafeArea/Content/TopRow/GoldInfo/StatsRow"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_icon_value")
+icon = ExtResource("6_dps")
+icon_size = 28.0
+label_variation = &"SmallLabel"
+
+[node name="BaseRow" type="HBoxContainer" parent="SafeArea/Content"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="PlayerBaseBox" type="VBoxContainer" parent="SafeArea/Content/BaseRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="PlayerBaseValue" type="HBoxContainer" parent="SafeArea/Content/BaseRow/PlayerBaseBox"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_icon_value")
+icon = ExtResource("7_base_player")
+icon_size = 30.0
+label_variation = &"SmallLabel"
+
+[node name="PlayerBaseBar" type="ProgressBar" parent="SafeArea/Content/BaseRow/PlayerBaseBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/fill = SubResource("player_base_fill")
+value = 100.0
+show_percentage = false
+
+[node name="EnemyBaseBox" type="VBoxContainer" parent="SafeArea/Content/BaseRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="EnemyBaseValue" type="HBoxContainer" parent="SafeArea/Content/BaseRow/EnemyBaseBox"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_icon_value")
+icon = ExtResource("8_base_enemy")
+icon_size = 30.0
+label_variation = &"SmallLabel"
+alignment = 2
+
+[node name="EnemyBaseBar" type="ProgressBar" parent="SafeArea/Content/BaseRow/EnemyBaseBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/fill = SubResource("enemy_base_fill")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="EnemyPowerValue" type="HBoxContainer" parent="SafeArea/Content/BaseRow/EnemyBaseBox"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_icon_value")
+icon = ExtResource("9_enemy_power")
+icon_size = 28.0
+label_variation = &"SmallLabel"
+alignment = 2
+value_color = Color(1, 0.55, 0.45, 1)
+
+[node name="LaneRow" type="HBoxContainer" parent="SafeArea/Content"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="LaneMinimap" type="Control" parent="SafeArea/Content/LaneRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("2_lane_minim")
+
+[connection signal="jump_requested" from="SafeArea/Content/LaneRow/LaneMinimap" to="." method="_on_lane_minimap_jump_requested"]

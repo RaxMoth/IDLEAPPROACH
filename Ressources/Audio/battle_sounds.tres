@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="BattleSoundBank" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/battle_sound_bank.gd" id="1_bank"]
+[ext_resource type="Script" path="res://Scripts/Resources/sound_effect.gd" id="2_sound"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Music/battle_theme.wav" id="3_battle_music"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Music/boss_theme.wav" id="4_boss_music"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/stage_won.wav" id="5_stage_won"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/stage_lost.wav" id="6_stage_lost"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/boss_arrived.wav" id="7_boss_arrived"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/shard_dropped.wav" id="8_shard_dropped"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/hero_recruited.wav" id="9_hero_recruited"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/hero_level_up.wav" id="10_hero_level_up"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/star_up.wav" id="11_star_up"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/rebirth.wav" id="12_rebirth"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/chest_opened.wav" id="20_chest_opened"]
+
+[sub_resource type="Resource" id="Resource_stage_won"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("5_stage_won")])
+volume_db = -3.0
+
+[sub_resource type="Resource" id="Resource_stage_lost"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("6_stage_lost")])
+volume_db = -4.0
+
+[sub_resource type="Resource" id="Resource_boss_arrived"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("7_boss_arrived")])
+volume_db = -3.0
+
+[sub_resource type="Resource" id="Resource_shard_dropped"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("8_shard_dropped")])
+volume_db = -8.0
+
+[sub_resource type="Resource" id="Resource_hero_recruited"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("9_hero_recruited")])
+volume_db = -5.0
+
+[sub_resource type="Resource" id="Resource_hero_level_up"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("10_hero_level_up")])
+volume_db = -9.0
+pitch_variation = 0.03
+min_interval_seconds = 0.05
+
+[sub_resource type="Resource" id="Resource_star_up"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("11_star_up")])
+volume_db = -4.0
+
+[sub_resource type="Resource" id="Resource_rebirth"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("12_rebirth")])
+volume_db = -2.0
+
+[sub_resource type="Resource" id="Resource_chest_opened"]
+script = ExtResource("2_sound")
+streams = Array[AudioStream]([ExtResource("20_chest_opened")])
+volume_db = -4.0
+
+[resource]
+script = ExtResource("1_bank")
+battle_music = ExtResource("3_battle_music")
+boss_music = ExtResource("4_boss_music")
+music_volume_db = -6.0
+stage_won = SubResource("Resource_stage_won")
+stage_lost = SubResource("Resource_stage_lost")
+boss_arrived = SubResource("Resource_boss_arrived")
+shard_dropped = SubResource("Resource_shard_dropped")
+hero_recruited = SubResource("Resource_hero_recruited")
+hero_level_up = SubResource("Resource_hero_level_up")
+star_up = SubResource("Resource_star_up")
+rebirth = SubResource("Resource_rebirth")
+chest_opened = SubResource("Resource_chest_opened")

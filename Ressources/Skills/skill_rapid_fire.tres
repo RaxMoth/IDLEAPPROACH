@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FrenzySkill" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skills/frenzy_skill.gd" id="1_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Skills/skill_frenzy.tres" id="9_cast_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/skill_frenzy.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_skill")
+attack_speed_multiplier = 2.5
+duration_seconds = 4.0
+effect_color = Color(0.4, 1.0, 0.9, 1)
+id = &"rapid_fire"
+title = "Rapid Fire"
+cooldown_seconds = 12.0
+cast_sound = ExtResource("9_cast_sound")
+icon = ExtResource("20_icon")

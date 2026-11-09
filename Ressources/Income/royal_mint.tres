@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="IncomeSourceData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/income_source_data.gd" id="1_income"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/royal_mint.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_income")
+id = &"royal_mint"
+title = "Royal Mint"
+description = "Strikes coins for the crown."
+color = Color(0.7, 0.5, 0.9, 1)
+cycle_seconds = 180.0
+base_gold = 800000.0
+base_cost = 1000000.0
+cost_growth = 1.07
+icon = ExtResource("20_icon")

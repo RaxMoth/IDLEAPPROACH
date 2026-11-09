@@ -1,5 +1,6 @@
 ## Pill showing a currency balance that updates (with a count-up) whenever the
-## wallet changes. Drop it anywhere: Add Node > CurrencyDisplay, set currency_id.
+## wallet changes. Shows the currency's icon (its fallback_symbol when it has
+## none). Drop it anywhere: Add Node > CurrencyDisplay, set currency_id.
 ##
 ## Dependencies: Events, Profile autoloads
 class_name CurrencyDisplay
@@ -14,6 +15,9 @@ signal tapped(currency_id: StringName)
 		if is_node_ready():
 			_refresh_definition()
 
+const ICON_SIZE: float = 40.0
+
+var _icon_rect: TextureRect
 var _symbol_label: Label
 var _amount_label: Label
 var _displayed_amount: int = 0
@@ -26,6 +30,13 @@ func _ready() -> void:
 	content_row.add_theme_constant_override("separation", 10)
 	content_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(content_row)
+	_icon_rect = TextureRect.new()
+	_icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_icon_rect.custom_minimum_size = Vector2.ONE * ICON_SIZE
+	_icon_rect.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	_icon_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	content_row.add_child(_icon_rect)
 	_symbol_label = Label.new()
 	_symbol_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	content_row.add_child(_symbol_label)
@@ -44,6 +55,10 @@ func _gui_input(event: InputEvent) -> void:
 
 func _refresh_definition() -> void:
 	var currency: CurrencyData = GameConfig.get_default().find_currency(currency_id)
+	var icon: Texture2D = currency.icon if currency != null else null
+	_icon_rect.texture = icon
+	_icon_rect.visible = icon != null
+	_symbol_label.visible = icon == null
 	_symbol_label.text = currency.fallback_symbol if currency != null else "?"
 	_symbol_label.add_theme_color_override("font_color", currency.color if currency != null else Color.WHITE)
 	_displayed_amount = Profile.wallet.get_amount(currency_id)

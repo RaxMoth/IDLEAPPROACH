@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SoundEffect" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/sound_effect.gd" id="1_sound"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/hit_slash.wav" id="2_take"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/hit_slash_2.wav" id="3_take"]
+
+[resource]
+script = ExtResource("1_sound")
+streams = Array[AudioStream]([ExtResource("2_take"), ExtResource("3_take")])
+volume_db = -11.0
+pitch_variation = 0.1
+min_interval_seconds = 0.07

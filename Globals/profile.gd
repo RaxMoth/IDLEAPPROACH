@@ -3,6 +3,10 @@
 ##   Profile.wallet.add(Types.CURRENCY_COINS, 50)
 ##   Profile.levels.get_stars(&"level_1")
 ##   Profile.meta.set_flag(&"tutorial_done")
+##   Profile.idle_wallet.add(Types.CURRENCY_GOLD, 1.5e12)
+##   Profile.campaign.current_stage / Profile.heroes.get_level(&"squire")
+##   Profile.hero_stars.get_stars(&"squire") / add_shards() / star_up()
+##   Profile.income.get_level(&"lumber_camp") / purchase_levels()
 ##
 ## Add a module: create a ProfileModule subclass in Scripts/Profile/, add a
 ## var here and append it in _create_modules().
@@ -20,6 +24,11 @@ var stats: Statistics
 var achievements: AchievementTracker
 var daily_rewards: DailyRewards
 var energy: Energy
+var idle_wallet: IdleWallet
+var campaign: CampaignProgress
+var heroes: HeroRoster
+var hero_stars: HeroStars
+var income: IncomeSources
 
 var _modules: Array[ProfileModule] = []
 
@@ -51,7 +60,12 @@ func _create_modules() -> void:
 	achievements = AchievementTracker.new(config)
 	daily_rewards = DailyRewards.new(config)
 	energy = Energy.new(config)
-	_modules = [meta, wallet, inventory, levels, upgrades, stats, achievements, daily_rewards, energy]
+	idle_wallet = IdleWallet.new(config)
+	campaign = CampaignProgress.new(config)
+	heroes = HeroRoster.new(config)
+	hero_stars = HeroStars.new(config)
+	income = IncomeSources.new(config)
+	_modules = [meta, wallet, inventory, levels, upgrades, stats, achievements, daily_rewards, energy, idle_wallet, campaign, heroes, hero_stars, income]
 
 
 ## Grants a reward dictionary. Ids matching a CurrencyData go to the wallet,
@@ -74,3 +88,6 @@ func _on_progress_reset() -> void:
 		module.reset()
 	for currency: CurrencyData in config.currencies:
 		Events.currency_changed.emit(currency.id, wallet.get_amount(currency.id), 0)
+	for currency: CurrencyData in config.idle_currencies:
+		Events.idle_currency_changed.emit(currency.id, idle_wallet.get_amount(currency.id), 0.0)
+	Events.stage_changed.emit(campaign.current_stage, campaign.highest_stage)

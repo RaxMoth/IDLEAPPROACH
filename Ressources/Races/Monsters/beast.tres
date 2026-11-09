@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterRace" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/monster_race.gd" id="1_race"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/race_beast.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_race")
+id = &"beast"
+display_name = "Beast"
+color = Color(0.75, 0.55, 0.3, 1)
+trait_description = "Fast: moves 30% quicker."
+speed_multiplier = 1.3
+icon = ExtResource("20_icon")

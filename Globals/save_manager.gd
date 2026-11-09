@@ -5,8 +5,10 @@
 ## Saving writes to a temp file, keeps the previous save as a backup and then
 ## swaps files, so a crash mid-write never destroys progress. Saves are
 ## debounced (request_save) and forced when the app goes to the background.
+## Test scenes (res://Tests/) use test_ copies of the files instead
+## (Global.resolve_user_path), so they never touch the player's progress.
 ##
-## Dependencies: Events autoload
+## Dependencies: Events, Global autoloads
 extends Node
 
 signal saved
@@ -22,6 +24,11 @@ const KEY_VERSION: String = "version"
 const KEY_SAVED_AT: String = "saved_at"
 const KEY_SECTIONS: String = "sections"
 
+## The files actually used: the paths above, or their test_ twins in tests.
+var save_path: String = SAVE_PATH
+var backup_path: String = BACKUP_PATH
+var temp_path: String = TEMP_PATH
+
 var _save_callables: Dictionary[StringName, Callable] = {}
 var _load_callables: Dictionary[StringName, Callable] = {}
 var _loaded_sections: Dictionary = {}
@@ -30,6 +37,9 @@ var _debounce_timer: Timer
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	save_path = Global.resolve_user_path(SAVE_PATH)
+	backup_path = Global.resolve_user_path(BACKUP_PATH)
+	temp_path = Global.resolve_user_path(TEMP_PATH)
 	_debounce_timer = Timer.new()
 	_debounce_timer.one_shot = true
 	_debounce_timer.wait_time = DEBOUNCE_SECONDS
@@ -59,9 +69,12 @@ func unregister_section(section_key: StringName) -> void:
 	_load_callables.erase(section_key)
 
 
-## Schedules a save shortly after the last change (cheap to call often).
+## Schedules a save shortly after the first unsaved change (cheap to call often).
+## Restarting the timer on every call would starve saving in idle games where
+## something changes every frame, so a pending save is never pushed back.
 func request_save() -> void:
-	_debounce_timer.start()
+	if _debounce_timer.is_stopped():
+		_debounce_timer.start()
 
 
 func save_now() -> bool:
@@ -74,16 +87,16 @@ func save_now() -> bool:
 		KEY_SAVED_AT: int(Time.get_unix_time_from_system()),
 		KEY_SECTIONS: sections,
 	}
-	var file: FileAccess = FileAccess.open(TEMP_PATH, FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open(temp_path, FileAccess.WRITE)
 	if file == null:
 		push_error("SaveManager: cannot write save (%s)" % error_string(FileAccess.get_open_error()))
 		return false
 	file.store_string(JSON.stringify(payload, "\t"))
 	file.close()
-	if FileAccess.file_exists(SAVE_PATH):
-		DirAccess.remove_absolute(BACKUP_PATH)
-		DirAccess.rename_absolute(SAVE_PATH, BACKUP_PATH)
-	DirAccess.rename_absolute(TEMP_PATH, SAVE_PATH)
+	if FileAccess.file_exists(save_path):
+		DirAccess.remove_absolute(backup_path)
+		DirAccess.rename_absolute(save_path, backup_path)
+	DirAccess.rename_absolute(temp_path, save_path)
 	_loaded_sections = sections
 	saved.emit()
 	return true
@@ -92,22 +105,22 @@ func save_now() -> bool:
 ## Wipes every section back to defaults (used by "Reset progress").
 func delete_save() -> void:
 	_debounce_timer.stop()
-	DirAccess.remove_absolute(SAVE_PATH)
-	DirAccess.remove_absolute(BACKUP_PATH)
+	DirAccess.remove_absolute(save_path)
+	DirAccess.remove_absolute(backup_path)
 	_loaded_sections = {}
 	Events.progress_reset.emit()
 	save_now()
 
 
 func has_save_file() -> bool:
-	return FileAccess.file_exists(SAVE_PATH)
+	return FileAccess.file_exists(save_path)
 
 
 func _read_from_disk() -> void:
-	var payload: Dictionary = _read_json(SAVE_PATH)
-	if payload.is_empty() and FileAccess.file_exists(BACKUP_PATH):
+	var payload: Dictionary = _read_json(save_path)
+	if payload.is_empty() and FileAccess.file_exists(backup_path):
 		push_warning("SaveManager: main save unreadable, restoring backup.")
-		payload = _read_json(BACKUP_PATH)
+		payload = _read_json(backup_path)
 	if payload.is_empty():
 		return
 	payload = _migrate(payload)

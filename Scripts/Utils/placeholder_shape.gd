@@ -34,9 +34,12 @@ func _draw() -> void:
 	var half_size: Vector2 = size * 0.5
 	match shape_kind:
 		ShapeKind.CIRCLE:
+			# An ellipse when width and height differ (e.g. flat ground shadows).
+			draw_set_transform(Vector2.ZERO, 0.0, Vector2(1.0, half_size.y / maxf(half_size.x, 0.001)))
 			draw_circle(Vector2.ZERO, half_size.x, color)
 			if outline_width > 0.0:
 				draw_arc(Vector2.ZERO, half_size.x - outline_width * 0.5, 0.0, TAU, 32, outline_color, outline_width, true)
+			draw_set_transform(Vector2.ZERO)
 		ShapeKind.RECTANGLE:
 			var rectangle: Rect2 = Rect2(-half_size, size)
 			draw_rect(rectangle, color)

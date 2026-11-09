@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="IncomeSourceData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/income_source_data.gd" id="1_income"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/copper_mine.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_income")
+id = &"copper_mine"
+title = "Copper Mine"
+description = "Slow digging, solid ore."
+color = Color(0.85, 0.5, 0.25, 1)
+cycle_seconds = 20.0
+base_gold = 400.0
+base_cost = 2000.0
+cost_growth = 1.07
+icon = ExtResource("20_icon")

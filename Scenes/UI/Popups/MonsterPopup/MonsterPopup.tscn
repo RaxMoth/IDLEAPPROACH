@@ -1,0 +1,129 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/UI/Popups/MonsterPopup/monster_popup.gd" id="1_monster_popup"]
+[ext_resource type="Script" path="res://Scripts/UI/stat_grid.gd" id="2_stat_grid"]
+
+[node name="MonsterPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_monster_popup")
+pause_game = true
+
+[node name="Backdrop" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="CenterContainer/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PortraitFrame" type="Control" parent="CenterContainer/Panel/Content/Header"]
+custom_minimum_size = Vector2(124, 124)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Portrait" type="ColorRect" parent="CenterContainer/Panel/Content/Header/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.17, 0.15, 0.17, 1)
+
+[node name="PortraitArt" type="TextureRect" parent="CenterContainer/Panel/Content/Header/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InitialLabel" type="Label" parent="CenterContainer/Panel/Content/Header/PortraitFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderLabel"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
+theme_override_constants/outline_size = 8
+text = "M"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Titles" type="VBoxContainer" parent="CenterContainer/Panel/Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="CenterContainer/Panel/Content/Header/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Monster"
+autowrap_mode = 3
+
+[node name="TagRow" type="HBoxContainer" parent="CenterContainer/Panel/Content/Header/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TraitLabel" type="Label" parent="CenterContainer/Panel/Content/Header/Titles"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+autowrap_mode = 3
+
+[node name="StatGrid" type="GridContainer" parent="CenterContainer/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+script = ExtResource("2_stat_grid")
+extra_icon_size = 34.0
+
+[node name="CloseButton" type="Button" parent="CenterContainer/Panel/Content"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_type_variation = &"SecondaryButton"
+text = "Close"
+
+[connection signal="pressed" from="CenterContainer/Panel/Content/CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,102 +1,133 @@
-[gd_resource type="Resource" script_class="GameConfig" load_steps=38 format=3]
+[gd_resource type="Resource" script_class="GameConfig" format=3]
 
 [ext_resource type="Script" path="res://Scripts/Resources/achievement_data.gd" id="1_tv74q"]
 [ext_resource type="Script" path="res://Scripts/Resources/currency_data.gd" id="2_uypxx"]
 [ext_resource type="Script" path="res://Scripts/Resources/reward_bundle.gd" id="3_kxyoi"]
 [ext_resource type="Script" path="res://Scripts/Resources/level_data.gd" id="4_00tpa"]
-[ext_resource type="Resource" path="res://Ressources/Levels/idle_tapper.tres" id="5_1217a"]
-[ext_resource type="Resource" path="res://Ressources/Levels/survivor.tres" id="6_ebwxi"]
-[ext_resource type="Resource" path="res://Ressources/Levels/tower_defense.tres" id="7_fqga7"]
-[ext_resource type="Resource" path="res://Ressources/Levels/match3.tres" id="8_2gywg"]
-[ext_resource type="Resource" path="res://Ressources/Levels/runner.tres" id="9_y0oob"]
 [ext_resource type="Script" path="res://Scripts/Resources/product_data.gd" id="10_n01iv"]
 [ext_resource type="Script" path="res://Scripts/Resources/game_config.gd" id="11_hlth3"]
 [ext_resource type="Script" path="res://Scripts/Resources/upgrade_data.gd" id="12_452dx"]
-[ext_resource type="Resource" path="res://Ressources/Upgrades/survivor_vitality.tres" id="13_402df"]
-[ext_resource type="Resource" path="res://Ressources/Upgrades/survivor_power.tres" id="14_23n5b"]
-[ext_resource type="Resource" path="res://Ressources/Upgrades/td_war_chest.tres" id="15_7pc8k"]
-[ext_resource type="Resource" path="res://Ressources/Upgrades/idle_tap_power.tres" id="16_bkxs7"]
-[ext_resource type="Resource" path="res://Ressources/Upgrades/idle_auto_income.tres" id="17_rtlyl"]
-
-[sub_resource type="Resource" id="Resource_xupv4"]
-script = ExtResource("1_tv74q")
-id = &"first_win"
-title = "First Victory"
-description = "Win any level."
-stat_id = &"levels_won"
-rewards = Dictionary[StringName, int]({
-&"gems": 5
-})
+[ext_resource type="Resource" path="res://Ressources/Levels/battle.tres" id="18_battle"]
+[ext_resource type="Resource" path="res://Ressources/campaign.tres" id="19_campaign"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/gold.png" id="icon_coins"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/gems.png" id="icon_gems"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/souls.png" id="icon_souls"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/gold.png" id="icon_gold"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/key.png" id="icon_keys"]
 
 [sub_resource type="Resource" id="Resource_7fl3l"]
 script = ExtResource("1_tv74q")
 id = &"monster_hunter"
 title = "Monster Hunter"
-description = "Defeat 100 enemies."
+description = "Defeat 100 monsters."
 stat_id = &"enemies_defeated"
 target_value = 100.0
-rewards = Dictionary[StringName, int]({
-&"coins": 200
-})
-
-[sub_resource type="Resource" id="Resource_0pid0"]
-script = ExtResource("1_tv74q")
-id = &"tap_tap_tap"
-title = "Tap Tap Tap"
-description = "Tap the coin 500 times."
-stat_id = &"taps"
-target_value = 500.0
-rewards = Dictionary[StringName, int]({
-&"coins": 100
-})
-
-[sub_resource type="Resource" id="Resource_lf3ti"]
-script = ExtResource("1_tv74q")
-id = &"getting_rich"
-title = "Getting Rich"
-description = "Earn 5,000 coins in total."
-stat_id = &"coins_earned"
-target_value = 5000.0
 rewards = Dictionary[StringName, int]({
 &"gems": 10
 })
 
-[sub_resource type="Resource" id="Resource_q2xy6"]
+[sub_resource type="Resource" id="Resource_0pid0"]
 script = ExtResource("1_tv74q")
-id = &"gem_matcher"
-title = "Gem Matcher"
-description = "Make 50 matches."
-stat_id = &"matches_made"
-target_value = 50.0
-rewards = Dictionary[StringName, int]({
-&"coins": 100
-})
-
-[sub_resource type="Resource" id="Resource_njcch"]
-script = ExtResource("1_tv74q")
-id = &"marathon"
-title = "Marathon"
-description = "Score 1,000 in the runner."
-stat_id = &"best_runner_score"
-target_value = 1000.0
+id = &"siege_breaker"
+title = "Siege Breaker"
+description = "Destroy 25 enemy bases."
+stat_id = &"bases_destroyed"
+target_value = 25.0
 rewards = Dictionary[StringName, int]({
 &"gems": 5
 })
 
-[sub_resource type="Resource" id="Resource_cb7jm"]
+[sub_resource type="Resource" id="Resource_stage25"]
 script = ExtResource("1_tv74q")
-id = &"dedicated"
-title = "Dedicated"
-description = "Play 25 levels."
-stat_id = &"levels_played"
+id = &"stage_25"
+title = "Explorer"
+description = "Reach stage 25."
+stat_id = &"highest_stage"
 target_value = 25.0
 rewards = Dictionary[StringName, int]({
 &"gems": 10
 })
 
+[sub_resource type="Resource" id="Resource_stage100"]
+script = ExtResource("1_tv74q")
+id = &"stage_100"
+title = "Conqueror"
+description = "Reach stage 100."
+stat_id = &"highest_stage"
+target_value = 100.0
+rewards = Dictionary[StringName, int]({
+&"gems": 50
+})
+
+[sub_resource type="Resource" id="Resource_bosses"]
+script = ExtResource("1_tv74q")
+id = &"boss_slayer"
+title = "Boss Slayer"
+description = "Defeat 25 bosses."
+stat_id = &"bosses_defeated"
+target_value = 25.0
+rewards = Dictionary[StringName, int]({
+&"gems": 15
+})
+
+[sub_resource type="Resource" id="Resource_rebirth"]
+script = ExtResource("1_tv74q")
+id = &"reborn"
+title = "Reborn"
+description = "Rebirth for the first time."
+stat_id = &"rebirths"
+rewards = Dictionary[StringName, int]({
+&"gems": 25
+})
+
+[sub_resource type="Resource" id="Resource_air"]
+script = ExtResource("1_tv74q")
+id = &"air_defense"
+title = "Air Defense"
+description = "Defeat 50 flying monsters."
+stat_id = &"flyers_defeated"
+target_value = 50.0
+rewards = Dictionary[StringName, int]({
+&"gems": 20
+})
+
+[sub_resource type="Resource" id="Resource_squad"]
+script = ExtResource("1_tv74q")
+id = &"full_squad"
+title = "Full Squad"
+description = "Collect all 12 heroes."
+stat_id = &"heroes_collected"
+target_value = 12.0
+rewards = Dictionary[StringName, int]({
+&"gems": 50
+})
+
+[sub_resource type="Resource" id="Resource_tycoon"]
+script = ExtResource("1_tv74q")
+id = &"tycoon"
+title = "Tycoon"
+description = "Own all 6 income sources in one run."
+stat_id = &"income_sources_owned"
+target_value = 6.0
+rewards = Dictionary[StringName, int]({
+&"gems": 30
+})
+
+[sub_resource type="Resource" id="Resource_stars"]
+script = ExtResource("1_tv74q")
+id = &"star_power"
+title = "Star Power"
+description = "Earn 5 hero stars."
+stat_id = &"total_stars"
+target_value = 5.0
+rewards = Dictionary[StringName, int]({
+&"gems": 25
+})
+
 [sub_resource type="Resource" id="Resource_kaqou"]
 script = ExtResource("2_uypxx")
 id = &"coins"
+icon = ExtResource("icon_coins")
 display_name = "Coins"
 color = Color(1, 0.8, 0.2, 1)
 starting_amount = 100
@@ -104,58 +135,83 @@ starting_amount = 100
 [sub_resource type="Resource" id="Resource_mgk0r"]
 script = ExtResource("2_uypxx")
 id = &"gems"
+icon = ExtResource("icon_gems")
 display_name = "Gems"
 fallback_symbol = "◆"
 color = Color(0.4, 0.85, 1, 1)
 starting_amount = 10
 
+[sub_resource type="Resource" id="Resource_souls"]
+script = ExtResource("2_uypxx")
+id = &"souls"
+icon = ExtResource("icon_souls")
+display_name = "Souls"
+fallback_symbol = "✦"
+color = Color(0.75, 0.55, 1, 1)
+
+[sub_resource type="Resource" id="Resource_keys"]
+script = ExtResource("2_uypxx")
+id = &"keys"
+icon = ExtResource("icon_keys")
+display_name = "Chest keys"
+fallback_symbol = "⚷"
+color = Color(1, 0.84, 0.3, 1)
+starting_amount = 1
+
+[sub_resource type="Resource" id="Resource_gold"]
+script = ExtResource("2_uypxx")
+id = &"gold"
+icon = ExtResource("icon_gold")
+display_name = "Gold"
+color = Color(1, 0.84, 0.3, 1)
+
 [sub_resource type="Resource" id="Resource_e2jnc"]
 script = ExtResource("3_kxyoi")
 title = "Day 1"
 rewards = Dictionary[StringName, int]({
-&"coins": 50
+&"gems": 5
 })
 
 [sub_resource type="Resource" id="Resource_mddpq"]
 script = ExtResource("3_kxyoi")
 title = "Day 2"
 rewards = Dictionary[StringName, int]({
-&"coins": 75
+&"gems": 5
 })
 
 [sub_resource type="Resource" id="Resource_08yvd"]
 script = ExtResource("3_kxyoi")
 title = "Day 3"
 rewards = Dictionary[StringName, int]({
-&"coins": 100
+&"gems": 10
 })
 
 [sub_resource type="Resource" id="Resource_5j71n"]
 script = ExtResource("3_kxyoi")
 title = "Day 4"
 rewards = Dictionary[StringName, int]({
-&"gems": 5
+&"gems": 10
 })
 
 [sub_resource type="Resource" id="Resource_nddt7"]
 script = ExtResource("3_kxyoi")
 title = "Day 5"
 rewards = Dictionary[StringName, int]({
-&"coins": 150
+&"gems": 15
 })
 
 [sub_resource type="Resource" id="Resource_s6s6f"]
 script = ExtResource("3_kxyoi")
 title = "Day 6"
 rewards = Dictionary[StringName, int]({
-&"coins": 200
+&"gems": 15
 })
 
 [sub_resource type="Resource" id="Resource_k7j5h"]
 script = ExtResource("3_kxyoi")
 title = "Day 7"
 rewards = Dictionary[StringName, int]({
-&"gems": 20
+&"gems": 30
 })
 
 [sub_resource type="Resource" id="Resource_ri70k"]
@@ -181,26 +237,22 @@ rewards = Dictionary[StringName, int]({
 script = ExtResource("10_n01iv")
 id = &"starter_pack"
 title = "Starter Pack"
-description = "2000 coins + 50 gems"
+description = "150 gems + 5 souls"
 fallback_price_text = "$1.99"
 rewards = Dictionary[StringName, int]({
-&"coins": 2000,
-&"gems": 50
+&"gems": 150,
+&"souls": 5
 })
-
-[sub_resource type="Resource" id="Resource_hjqo3"]
-script = ExtResource("10_n01iv")
-id = &"no_ads"
-title = "Remove Ads"
-description = "No more interstitial ads. Forever."
-product_type = 1
-fallback_price_text = "$2.99"
 
 [resource]
 script = ExtResource("11_hlth3")
-currencies = Array[ExtResource("2_uypxx")]([SubResource("Resource_kaqou"), SubResource("Resource_mgk0r")])
-upgrades = Array[ExtResource("12_452dx")]([ExtResource("13_402df"), ExtResource("14_23n5b"), ExtResource("15_7pc8k"), ExtResource("16_bkxs7"), ExtResource("17_rtlyl")])
-products = Array[ExtResource("10_n01iv")]([SubResource("Resource_ri70k"), SubResource("Resource_3e2qu"), SubResource("Resource_rr1h1"), SubResource("Resource_hjqo3")])
-levels = Array[ExtResource("4_00tpa")]([ExtResource("5_1217a"), ExtResource("6_ebwxi"), ExtResource("7_fqga7"), ExtResource("8_2gywg"), ExtResource("9_y0oob")])
-achievements = Array[ExtResource("1_tv74q")]([SubResource("Resource_xupv4"), SubResource("Resource_7fl3l"), SubResource("Resource_0pid0"), SubResource("Resource_lf3ti"), SubResource("Resource_q2xy6"), SubResource("Resource_njcch"), SubResource("Resource_cb7jm")])
+boot_into_first_level = true
+currencies = Array[ExtResource("2_uypxx")]([SubResource("Resource_kaqou"), SubResource("Resource_mgk0r"), SubResource("Resource_souls"), SubResource("Resource_keys")])
+idle_currencies = Array[ExtResource("2_uypxx")]([SubResource("Resource_gold")])
+upgrades = Array[ExtResource("12_452dx")]([])
+products = Array[ExtResource("10_n01iv")]([SubResource("Resource_ri70k"), SubResource("Resource_3e2qu"), SubResource("Resource_rr1h1")])
+levels = Array[ExtResource("4_00tpa")]([ExtResource("18_battle")])
+achievements = Array[ExtResource("1_tv74q")]([SubResource("Resource_7fl3l"), SubResource("Resource_0pid0"), SubResource("Resource_stage25"), SubResource("Resource_stage100"), SubResource("Resource_bosses"), SubResource("Resource_rebirth"), SubResource("Resource_air"), SubResource("Resource_squad"), SubResource("Resource_tycoon"), SubResource("Resource_stars")])
 daily_rewards = Array[ExtResource("3_kxyoi")]([SubResource("Resource_e2jnc"), SubResource("Resource_mddpq"), SubResource("Resource_08yvd"), SubResource("Resource_5j71n"), SubResource("Resource_nddt7"), SubResource("Resource_s6s6f"), SubResource("Resource_k7j5h")])
+campaign = ExtResource("19_campaign")
+ads_enabled = false

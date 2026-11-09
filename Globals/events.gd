@@ -27,6 +27,8 @@ signal score_changed(new_score: int, score_delta: int)
 
 # --- Economy & progression (emitted by Profile modules) ---
 signal currency_changed(currency_id: StringName, new_amount: int, amount_delta: int)
+## Float balances from Profile.idle_wallet (gold) that outgrow int64.
+signal idle_currency_changed(currency_id: StringName, new_amount: float, amount_delta: float)
 signal item_changed(item_id: StringName, new_count: int)
 signal upgrade_purchased(upgrade_id: StringName, new_level: int)
 signal stat_changed(stat_id: StringName, new_value: float)
@@ -34,6 +36,16 @@ signal achievement_unlocked(achievement: AchievementData)
 signal daily_reward_claimed(streak_day: int, rewards: Dictionary)
 signal energy_changed(current_energy: int, max_energy: int)
 signal progress_reset
+
+# --- Idle battle progression (emitted by Profile.campaign / heroes / hero_stars) ---
+signal stage_changed(current_stage: int, highest_stage: int)
+signal hero_leveled(hero_id: StringName, new_level: int)
+signal hero_shards_changed(hero_id: StringName, shard_count: int)
+signal hero_star_changed(hero_id: StringName, star_count: int)
+## A hero joined the collection (from a hero chest).
+signal hero_unlocked(hero_id: StringName)
+signal income_source_leveled(source_id: StringName, new_level: int)
+signal rebirth_completed(souls_gained: int, rebirth_count: int)
 
 # --- Gameplay feedback ---
 signal camera_shake_requested(trauma_amount: float)

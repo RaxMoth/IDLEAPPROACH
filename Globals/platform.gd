@@ -92,6 +92,10 @@ func vibrate(strength: Types.HapticStrength = Types.HapticStrength.LIGHT) -> voi
 # ============================================
 
 func _recalculate_safe_area() -> void:
+	# Focus notifications can arrive before this autoload enters the tree;
+	# _ready() recalculates once it is in.
+	if not is_inside_tree():
+		return
 	var window_size: Vector2i = DisplayServer.window_get_size()
 	if window_size.x <= 0 or window_size.y <= 0:
 		return

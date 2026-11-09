@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a **Godot 4.5+** reusable base template targeting **2D mobile games**
+This is a **Godot 4.7+** reusable base template targeting **2D mobile games**
 (also exports to Web/desktop). The renderer is **GL Compatibility** for the widest
 Android/iOS device support. The viewport is `720×1280` portrait with
 `canvas_items` stretch and `expand` aspect. Every architectural decision must

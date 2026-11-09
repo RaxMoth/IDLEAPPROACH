@@ -75,6 +75,11 @@ func _update_stats_visibility() -> void:
 func _build_cheats() -> void:
 	_add_cheat("+1000 coins", func() -> void: Profile.wallet.add(Types.CURRENCY_COINS, 1000))
 	_add_cheat("+100 gems", func() -> void: Profile.wallet.add(Types.CURRENCY_GEMS, 100))
+	_add_cheat("Gold x100", func() -> void: Profile.idle_wallet.add(Types.CURRENCY_GOLD, maxf(1000.0, Profile.idle_wallet.get_amount(Types.CURRENCY_GOLD) * 99.0)))
+	_add_cheat("+10 souls", func() -> void: Profile.wallet.add(Types.CURRENCY_SOULS, 10))
+	_add_cheat("Skip 10 stages", func() -> void:
+		for skipped_stage: int in 10:
+			Profile.campaign.advance_stage())
 	_add_cheat("Unlock all levels", func() -> void: Profile.levels.unlock_all_for_debug())
 	_add_cheat("Refill energy", func() -> void: Profile.energy.refill())
 	_add_cheat("Win level", func() -> void: _call_on_level(&"win"))

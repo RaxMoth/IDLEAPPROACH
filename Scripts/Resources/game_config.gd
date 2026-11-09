@@ -21,9 +21,14 @@ static var _default_instance: GameConfig = null
 @export_file("*.tscn") var shop_scene: String = "res://Scenes/Menus/Shop/Shop.tscn"
 ## Minimum time the boot splash stays visible.
 @export var boot_splash_seconds: float = 0.8
+## Boot straight into the first level instead of the main menu (idle games).
+## The main menu stays reachable from the pause menu.
+@export var boot_into_first_level: bool = false
 
 @export_group("Economy")
 @export var currencies: Array[CurrencyData] = []
+## Float currencies for idle-scale numbers (gold), stored in Profile.idle_wallet.
+@export var idle_currencies: Array[CurrencyData] = []
 @export var upgrades: Array[UpgradeData] = []
 @export var products: Array[ProductData] = []
 
@@ -33,6 +38,10 @@ static var _default_instance: GameConfig = null
 @export var achievements: Array[AchievementData] = []
 ## Reward per consecutive login day; loops after the last entry.
 @export var daily_rewards: Array[RewardBundle] = []
+
+@export_group("Campaign")
+## Idle battle tuning: stages, monsters, heroes, relics, rebirth.
+@export var campaign: CampaignConfig
 
 @export_group("Energy")
 ## 0 disables the energy/lives system entirely.
@@ -86,6 +95,13 @@ func get_next_level(level_id: StringName) -> LevelData:
 
 func find_currency(currency_id: StringName) -> CurrencyData:
 	for currency: CurrencyData in currencies:
+		if currency.id == currency_id:
+			return currency
+	return null
+
+
+func find_idle_currency(currency_id: StringName) -> CurrencyData:
+	for currency: CurrencyData in idle_currencies:
 		if currency.id == currency_id:
 			return currency
 	return null

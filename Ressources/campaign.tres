@@ -1,0 +1,490 @@
+[gd_resource type="Resource" script_class="CampaignConfig" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/campaign_config.gd" id="1_campaign"]
+[ext_resource type="Script" path="res://Scripts/Resources/monster_data.gd" id="2_monster_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/monster_zone.gd" id="3_monster_zone"]
+[ext_resource type="Script" path="res://Scripts/Resources/hero_data.gd" id="4_hero_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/relic_data.gd" id="5_relic_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/income_source_data.gd" id="6_income_source"]
+[ext_resource type="Script" path="res://Scripts/Resources/hero_race.gd" id="7_hero_race"]
+[ext_resource type="Script" path="res://Scripts/Resources/monster_race.gd" id="8_monster_race"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/squire.tres" id="hero_squire"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/archer.tres" id="hero_archer"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/ember_mage.tres" id="hero_ember_mage"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/griffin_knight.tres" id="hero_griffin_knight"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/cleric.tres" id="hero_cleric"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/ranger.tres" id="hero_ranger"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/storm_fairy.tres" id="hero_storm_fairy"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/paladin.tres" id="hero_paladin"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/seraph.tres" id="hero_seraph"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/banner_knight.tres" id="hero_banner_knight"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/cannoneer.tres" id="hero_cannoneer"]
+[ext_resource type="Resource" path="res://Ressources/Heroes/druid.tres" id="hero_druid"]
+[ext_resource type="Resource" path="res://Ressources/Relics/relic_warlord_blade.tres" id="relic_warlord_blade"]
+[ext_resource type="Resource" path="res://Ressources/Relics/relic_iron_heart.tres" id="relic_iron_heart"]
+[ext_resource type="Resource" path="res://Ressources/Relics/relic_golden_idol.tres" id="relic_golden_idol"]
+[ext_resource type="Resource" path="res://Ressources/Relics/relic_bastion_stone.tres" id="relic_bastion_stone"]
+[ext_resource type="Resource" path="res://Ressources/Income/lumber_camp.tres" id="income_lumber_camp"]
+[ext_resource type="Resource" path="res://Ressources/Income/fishing_dock.tres" id="income_fishing_dock"]
+[ext_resource type="Resource" path="res://Ressources/Income/copper_mine.tres" id="income_copper_mine"]
+[ext_resource type="Resource" path="res://Ressources/Income/blacksmith.tres" id="income_blacksmith"]
+[ext_resource type="Resource" path="res://Ressources/Income/merchant_caravan.tres" id="income_merchant_caravan"]
+[ext_resource type="Resource" path="res://Ressources/Income/royal_mint.tres" id="income_royal_mint"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/human.tres" id="hero_race_human"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/elf.tres" id="hero_race_elf"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/dwarf.tres" id="hero_race_dwarf"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/celestial.tres" id="hero_race_celestial"]
+[ext_resource type="Resource" path="res://Ressources/Races/Monsters/beast.tres" id="monster_race_beast"]
+[ext_resource type="Resource" path="res://Ressources/Races/Monsters/goblinoid.tres" id="monster_race_goblinoid"]
+[ext_resource type="Resource" path="res://Ressources/Races/Monsters/undead.tres" id="monster_race_undead"]
+[ext_resource type="Resource" path="res://Ressources/Races/Monsters/elemental.tres" id="monster_race_elemental"]
+[ext_resource type="Resource" path="res://Ressources/Races/Monsters/demon.tres" id="monster_race_demon"]
+
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/slime.png" id="art_slime"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/beetle.png" id="art_beetle"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/goblin_scout.png" id="art_goblin_scout"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/hornet.png" id="art_hornet"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/slime_king.png" id="art_slime_king"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/oak.png" id="prop_oak"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/bush.png" id="prop_bush"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/goblin_slinger.png" id="art_goblin_slinger"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/cave_spider.png" id="art_cave_spider"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/treant.png" id="art_treant"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/bat.png" id="art_bat"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/elder_treant.png" id="art_elder_treant"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/pine_dark.png" id="prop_pine_dark"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/mushroom.png" id="prop_mushroom"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/scorpion.png" id="art_scorpion"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/mummy.png" id="art_mummy"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/sand_wyrm.png" id="art_sand_wyrm"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/bone_vulture.png" id="art_bone_vulture"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/sand_colossus.png" id="art_sand_colossus"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/cactus.png" id="prop_cactus"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/desert_rock.png" id="prop_desert_rock"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/ice_imp.png" id="art_ice_imp"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/yeti.png" id="art_yeti"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/frost_goblin.png" id="art_frost_goblin"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/frost_wisp.png" id="art_frost_wisp"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/frost_giant.png" id="art_frost_giant"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/pine_snow.png" id="prop_pine_snow"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/ice_spike.png" id="prop_ice_spike"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/fire_imp.png" id="art_fire_imp"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/magma_golem.png" id="art_magma_golem"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/salamander.png" id="art_salamander"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/ash_wraith.png" id="art_ash_wraith"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Monsters/inferno_drake.png" id="art_inferno_drake"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/dead_tree.png" id="prop_dead_tree"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Props/lava_rock.png" id="prop_lava_rock"]
+[ext_resource type="Script" path="res://Scripts/Resources/race_matchup.gd" id="race_matchup_script"]
+[sub_resource type="Resource" id="monster_1"]
+script = ExtResource("2_monster_data")
+display_name = "Slime"
+icon = ExtResource("art_slime")
+race = ExtResource("monster_race_elemental")
+color = Color(0.6, 0.9, 0.35, 1)
+shape_kind = 0
+visual_size = Vector2(57, 57)
+health_multiplier = 1.0
+gold_multiplier = 1.0
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_2"]
+script = ExtResource("2_monster_data")
+display_name = "Beetle"
+icon = ExtResource("art_beetle")
+race = ExtResource("monster_race_beast")
+color = Color(0.55, 0.4, 0.25, 1)
+shape_kind = 5
+visual_size = Vector2(60, 60)
+health_multiplier = 1.2
+gold_multiplier = 1.2
+defense = 0.25
+
+[sub_resource type="Resource" id="monster_3"]
+script = ExtResource("2_monster_data")
+display_name = "Goblin Scout"
+icon = ExtResource("art_goblin_scout")
+race = ExtResource("monster_race_goblinoid")
+color = Color(0.5, 0.75, 0.35, 1)
+shape_kind = 4
+visual_size = Vector2(58, 58)
+health_multiplier = 0.8
+gold_multiplier = 0.9
+defense = 0.05
+
+[sub_resource type="Resource" id="monster_4"]
+script = ExtResource("2_monster_data")
+display_name = "Hornet"
+icon = ExtResource("art_hornet")
+race = ExtResource("monster_race_beast")
+layer = 1
+color = Color(1.0, 0.85, 0.2, 1)
+shape_kind = 2
+visual_size = Vector2(44, 44)
+health_multiplier = 0.6
+gold_multiplier = 1.1
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_5"]
+script = ExtResource("2_monster_data")
+display_name = "Slime King"
+icon = ExtResource("art_slime_king")
+race = ExtResource("monster_race_elemental")
+color = Color(0.45, 0.85, 0.3, 1)
+shape_kind = 0
+visual_size = Vector2(78, 78)
+
+[sub_resource type="Resource" id="zone_1"]
+script = ExtResource("3_monster_zone")
+display_name = "Meadow"
+props = Array[Texture2D]([ExtResource("prop_oak"), ExtResource("prop_bush")])
+sky_color = Color(0.373, 0.482, 0.549, 1)
+ground_color = Color(0.294, 0.420, 0.231, 1)
+prop_color = Color(0.231, 0.353, 0.188, 1)
+monsters = Array[ExtResource("2_monster_data")]([SubResource("monster_1"), SubResource("monster_2"), SubResource("monster_3"), SubResource("monster_4")])
+boss = SubResource("monster_5")
+
+[sub_resource type="Resource" id="monster_6"]
+script = ExtResource("2_monster_data")
+display_name = "Goblin Slinger"
+icon = ExtResource("art_goblin_slinger")
+race = ExtResource("monster_race_goblinoid")
+is_ranged = true
+attack_range = 200.0
+color = Color(0.45, 0.7, 0.3, 1)
+shape_kind = 2
+visual_size = Vector2(56, 56)
+health_multiplier = 0.8
+gold_multiplier = 1.1
+defense = 0.05
+
+[sub_resource type="Resource" id="monster_7"]
+script = ExtResource("2_monster_data")
+display_name = "Cave Spider"
+icon = ExtResource("art_cave_spider")
+race = ExtResource("monster_race_beast")
+color = Color(0.5, 0.35, 0.65, 1)
+shape_kind = 3
+visual_size = Vector2(60, 60)
+health_multiplier = 0.85
+gold_multiplier = 0.9
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_8"]
+script = ExtResource("2_monster_data")
+display_name = "Treant"
+icon = ExtResource("art_treant")
+race = ExtResource("monster_race_elemental")
+color = Color(0.45, 0.33, 0.2, 1)
+shape_kind = 1
+visual_size = Vector2(66, 66)
+health_multiplier = 1.3
+gold_multiplier = 1.25
+defense = 0.3
+
+[sub_resource type="Resource" id="monster_9"]
+script = ExtResource("2_monster_data")
+display_name = "Bat"
+icon = ExtResource("art_bat")
+race = ExtResource("monster_race_beast")
+layer = 1
+color = Color(0.35, 0.3, 0.4, 1)
+shape_kind = 3
+visual_size = Vector2(42, 42)
+health_multiplier = 0.6
+gold_multiplier = 1.1
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_10"]
+script = ExtResource("2_monster_data")
+display_name = "Elder Treant"
+icon = ExtResource("art_elder_treant")
+race = ExtResource("monster_race_elemental")
+color = Color(0.35, 0.28, 0.15, 1)
+shape_kind = 1
+visual_size = Vector2(82, 82)
+
+[sub_resource type="Resource" id="zone_2"]
+script = ExtResource("3_monster_zone")
+display_name = "Dark Forest"
+props = Array[Texture2D]([ExtResource("prop_pine_dark"), ExtResource("prop_mushroom")])
+sky_color = Color(0.169, 0.196, 0.227, 1)
+ground_color = Color(0.149, 0.220, 0.173, 1)
+prop_color = Color(0.110, 0.169, 0.133, 1)
+monsters = Array[ExtResource("2_monster_data")]([SubResource("monster_6"), SubResource("monster_7"), SubResource("monster_8"), SubResource("monster_9")])
+boss = SubResource("monster_10")
+
+[sub_resource type="Resource" id="monster_11"]
+script = ExtResource("2_monster_data")
+display_name = "Scorpion"
+icon = ExtResource("art_scorpion")
+race = ExtResource("monster_race_beast")
+is_ranged = true
+attack_range = 180.0
+color = Color(0.85, 0.6, 0.25, 1)
+shape_kind = 2
+visual_size = Vector2(58, 58)
+health_multiplier = 1.0
+gold_multiplier = 1.0
+defense = 0.2
+
+[sub_resource type="Resource" id="monster_12"]
+script = ExtResource("2_monster_data")
+display_name = "Mummy"
+icon = ExtResource("art_mummy")
+race = ExtResource("monster_race_undead")
+color = Color(0.85, 0.82, 0.7, 1)
+shape_kind = 4
+visual_size = Vector2(63, 63)
+health_multiplier = 1.15
+gold_multiplier = 1.1
+defense = 0.15
+
+[sub_resource type="Resource" id="monster_13"]
+script = ExtResource("2_monster_data")
+display_name = "Sand Wyrm"
+icon = ExtResource("art_sand_wyrm")
+race = ExtResource("monster_race_elemental")
+color = Color(0.75, 0.55, 0.3, 1)
+shape_kind = 5
+visual_size = Vector2(61, 61)
+health_multiplier = 0.9
+gold_multiplier = 1.0
+defense = 0.1
+
+[sub_resource type="Resource" id="monster_14"]
+script = ExtResource("2_monster_data")
+display_name = "Bone Vulture"
+icon = ExtResource("art_bone_vulture")
+race = ExtResource("monster_race_undead")
+layer = 1
+color = Color(0.8, 0.78, 0.7, 1)
+shape_kind = 2
+visual_size = Vector2(50, 50)
+health_multiplier = 0.7
+gold_multiplier = 1.15
+defense = 0.05
+
+[sub_resource type="Resource" id="monster_15"]
+script = ExtResource("2_monster_data")
+display_name = "Sand Colossus"
+icon = ExtResource("art_sand_colossus")
+race = ExtResource("monster_race_elemental")
+color = Color(0.8, 0.62, 0.35, 1)
+shape_kind = 5
+visual_size = Vector2(85, 85)
+
+[sub_resource type="Resource" id="zone_3"]
+script = ExtResource("3_monster_zone")
+display_name = "Sunscorch Desert"
+props = Array[Texture2D]([ExtResource("prop_cactus"), ExtResource("prop_desert_rock")])
+sky_color = Color(0.549, 0.439, 0.337, 1)
+ground_color = Color(0.541, 0.424, 0.275, 1)
+prop_color = Color(0.420, 0.322, 0.212, 1)
+monsters = Array[ExtResource("2_monster_data")]([SubResource("monster_11"), SubResource("monster_12"), SubResource("monster_13"), SubResource("monster_14")])
+boss = SubResource("monster_15")
+
+[sub_resource type="Resource" id="monster_16"]
+script = ExtResource("2_monster_data")
+display_name = "Ice Imp"
+icon = ExtResource("art_ice_imp")
+race = ExtResource("monster_race_demon")
+is_ranged = true
+attack_range = 200.0
+color = Color(0.6, 0.85, 1.0, 1)
+shape_kind = 3
+visual_size = Vector2(54, 54)
+health_multiplier = 0.9
+gold_multiplier = 0.9
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_17"]
+script = ExtResource("2_monster_data")
+display_name = "Yeti"
+icon = ExtResource("art_yeti")
+race = ExtResource("monster_race_beast")
+color = Color(0.92, 0.95, 1.0, 1)
+shape_kind = 1
+visual_size = Vector2(70, 70)
+health_multiplier = 1.3
+gold_multiplier = 1.3
+defense = 0.2
+
+[sub_resource type="Resource" id="monster_18"]
+script = ExtResource("2_monster_data")
+display_name = "Frost Goblin"
+icon = ExtResource("art_frost_goblin")
+race = ExtResource("monster_race_goblinoid")
+color = Color(0.55, 0.7, 0.8, 1)
+shape_kind = 4
+visual_size = Vector2(58, 58)
+health_multiplier = 1.0
+gold_multiplier = 1.0
+defense = 0.1
+
+[sub_resource type="Resource" id="monster_19"]
+script = ExtResource("2_monster_data")
+display_name = "Frost Wisp"
+icon = ExtResource("art_frost_wisp")
+race = ExtResource("monster_race_elemental")
+layer = 1
+color = Color(0.55, 0.75, 1.0, 1)
+shape_kind = 0
+visual_size = Vector2(50, 50)
+health_multiplier = 0.85
+gold_multiplier = 1.0
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_20"]
+script = ExtResource("2_monster_data")
+display_name = "Frost Giant"
+icon = ExtResource("art_frost_giant")
+race = ExtResource("monster_race_elemental")
+color = Color(0.5, 0.7, 0.95, 1)
+shape_kind = 1
+visual_size = Vector2(88, 88)
+
+[sub_resource type="Resource" id="zone_4"]
+script = ExtResource("3_monster_zone")
+display_name = "Frost Peaks"
+props = Array[Texture2D]([ExtResource("prop_pine_snow"), ExtResource("prop_ice_spike")])
+sky_color = Color(0.361, 0.435, 0.518, 1)
+ground_color = Color(0.639, 0.702, 0.761, 1)
+prop_color = Color(0.353, 0.424, 0.510, 1)
+monsters = Array[ExtResource("2_monster_data")]([SubResource("monster_16"), SubResource("monster_17"), SubResource("monster_18"), SubResource("monster_19")])
+boss = SubResource("monster_20")
+
+[sub_resource type="Resource" id="monster_21"]
+script = ExtResource("2_monster_data")
+display_name = "Fire Imp"
+icon = ExtResource("art_fire_imp")
+race = ExtResource("monster_race_demon")
+is_ranged = true
+attack_range = 200.0
+color = Color(1.0, 0.45, 0.2, 1)
+shape_kind = 3
+visual_size = Vector2(54, 54)
+health_multiplier = 0.9
+gold_multiplier = 0.95
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_22"]
+script = ExtResource("2_monster_data")
+display_name = "Magma Golem"
+icon = ExtResource("art_magma_golem")
+race = ExtResource("monster_race_elemental")
+color = Color(0.7, 0.25, 0.15, 1)
+shape_kind = 1
+visual_size = Vector2(72, 72)
+health_multiplier = 1.35
+gold_multiplier = 1.3
+defense = 0.35
+
+[sub_resource type="Resource" id="monster_23"]
+script = ExtResource("2_monster_data")
+display_name = "Salamander"
+icon = ExtResource("art_salamander")
+race = ExtResource("monster_race_beast")
+color = Color(1.0, 0.65, 0.2, 1)
+shape_kind = 4
+visual_size = Vector2(65, 65)
+health_multiplier = 1.0
+gold_multiplier = 1.0
+defense = 0.1
+
+[sub_resource type="Resource" id="monster_24"]
+script = ExtResource("2_monster_data")
+display_name = "Ash Wraith"
+icon = ExtResource("art_ash_wraith")
+race = ExtResource("monster_race_undead")
+layer = 1
+color = Color(0.4, 0.35, 0.35, 1)
+shape_kind = 0
+visual_size = Vector2(50, 50)
+health_multiplier = 0.75
+gold_multiplier = 1.1
+defense = 0.0
+
+[sub_resource type="Resource" id="monster_25"]
+script = ExtResource("2_monster_data")
+display_name = "Inferno Drake"
+icon = ExtResource("art_inferno_drake")
+race = ExtResource("monster_race_demon")
+layer = 1
+color = Color(0.95, 0.3, 0.15, 1)
+shape_kind = 3
+visual_size = Vector2(80, 80)
+
+[sub_resource type="Resource" id="zone_5"]
+script = ExtResource("3_monster_zone")
+display_name = "Ember Volcano"
+props = Array[Texture2D]([ExtResource("prop_dead_tree"), ExtResource("prop_lava_rock")])
+sky_color = Color(0.180, 0.102, 0.102, 1)
+ground_color = Color(0.173, 0.114, 0.102, 1)
+prop_color = Color(0.290, 0.141, 0.094, 1)
+monsters = Array[ExtResource("2_monster_data")]([SubResource("monster_21"), SubResource("monster_22"), SubResource("monster_23"), SubResource("monster_24")])
+boss = SubResource("monster_25")
+
+[sub_resource type="Resource" id="race_matchup_1"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("hero_race_human")
+weak_race = ExtResource("monster_race_goblinoid")
+
+[sub_resource type="Resource" id="race_matchup_2"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("monster_race_goblinoid")
+weak_race = ExtResource("hero_race_elf")
+
+[sub_resource type="Resource" id="race_matchup_3"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("hero_race_elf")
+weak_race = ExtResource("monster_race_beast")
+
+[sub_resource type="Resource" id="race_matchup_4"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("monster_race_beast")
+weak_race = ExtResource("hero_race_dwarf")
+
+[sub_resource type="Resource" id="race_matchup_5"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("hero_race_dwarf")
+weak_race = ExtResource("monster_race_elemental")
+
+[sub_resource type="Resource" id="race_matchup_6"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("monster_race_elemental")
+weak_race = ExtResource("hero_race_celestial")
+
+[sub_resource type="Resource" id="race_matchup_7"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("hero_race_celestial")
+weak_race = ExtResource("monster_race_demon")
+
+[sub_resource type="Resource" id="race_matchup_8"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("monster_race_demon")
+weak_race = ExtResource("hero_race_human")
+
+[sub_resource type="Resource" id="race_matchup_9"]
+script = ExtResource("race_matchup_script")
+strong_race = ExtResource("hero_race_celestial")
+weak_race = ExtResource("monster_race_undead")
+
+[resource]
+script = ExtResource("1_campaign")
+monster_move_speed = 110.0
+enemy_base_health_growth = 1.19
+monster_health_growth = 1.18
+income_stage_growth = 1.04
+spawn_interval_seconds = 2.8
+monster_base_damage = 6.0
+monster_damage_growth = 1.19
+player_base_health = 150.0
+player_base_health_growth = 1.185
+zone_monsters = Array[ExtResource("3_monster_zone")]([SubResource("zone_1"), SubResource("zone_2"), SubResource("zone_3"), SubResource("zone_4"), SubResource("zone_5")])
+heroes = Array[ExtResource("4_hero_data")]([ExtResource("hero_squire"), ExtResource("hero_archer"), ExtResource("hero_ember_mage"), ExtResource("hero_griffin_knight"), ExtResource("hero_cleric"), ExtResource("hero_druid"), ExtResource("hero_ranger"), ExtResource("hero_cannoneer"), ExtResource("hero_storm_fairy"), ExtResource("hero_paladin"), ExtResource("hero_banner_knight"), ExtResource("hero_seraph")])
+hero_races = Array[ExtResource("7_hero_race")]([ExtResource("hero_race_human"), ExtResource("hero_race_elf"), ExtResource("hero_race_dwarf"), ExtResource("hero_race_celestial")])
+monster_races = Array[ExtResource("8_monster_race")]([ExtResource("monster_race_beast"), ExtResource("monster_race_goblinoid"), ExtResource("monster_race_undead"), ExtResource("monster_race_elemental"), ExtResource("monster_race_demon")])
+race_matchups = Array[ExtResource("race_matchup_script")]([SubResource("race_matchup_1"), SubResource("race_matchup_2"), SubResource("race_matchup_3"), SubResource("race_matchup_4"), SubResource("race_matchup_5"), SubResource("race_matchup_6"), SubResource("race_matchup_7"), SubResource("race_matchup_8"), SubResource("race_matchup_9")])
+income_sources = Array[ExtResource("6_income_source")]([ExtResource("income_lumber_camp"), ExtResource("income_fishing_dock"), ExtResource("income_copper_mine"), ExtResource("income_blacksmith"), ExtResource("income_merchant_caravan"), ExtResource("income_royal_mint")])
+relics = Array[ExtResource("5_relic_data")]([ExtResource("relic_warlord_blade"), ExtResource("relic_iron_heart"), ExtResource("relic_golden_idol"), ExtResource("relic_bastion_stone")])

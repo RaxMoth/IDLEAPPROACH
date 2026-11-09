@@ -28,6 +28,20 @@ func _physics_process(delta: float) -> void:
 		_cooldowns_remaining[slot_index] = maxf(0.0, _cooldowns_remaining[slot_index] - delta)
 
 
+## Replaces the slots at runtime (e.g. from data on setup); every slot starts ready.
+func set_abilities(new_abilities: Array[AbilityData]) -> void:
+	abilities = new_abilities
+	_cooldowns_remaining.resize(abilities.size())
+	_cooldowns_remaining.fill(0.0)
+
+
+## Puts every slot on [param fraction] of its cooldown (0 = ready, 1 = full),
+## e.g. so a whole team doesn't fire its skills in the same frame.
+func reset_cooldowns(fraction: float) -> void:
+	for slot_index: int in abilities.size():
+		_cooldowns_remaining[slot_index] = abilities[slot_index].cooldown_seconds * cooldown_multiplier * clampf(fraction, 0.0, 1.0)
+
+
 func get_ability(slot_index: int) -> AbilityData:
 	return abilities[slot_index] if slot_index >= 0 and slot_index < abilities.size() else null
 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="IncomeSourceData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/income_source_data.gd" id="1_income"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/merchant_caravan.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_income")
+id = &"merchant_caravan"
+title = "Merchant Caravan"
+description = "Long trade routes, big profits."
+color = Color(0.95, 0.75, 0.3, 1)
+cycle_seconds = 90.0
+base_gold = 60000.0
+base_cost = 120000.0
+cost_growth = 1.07
+icon = ExtResource("20_icon")

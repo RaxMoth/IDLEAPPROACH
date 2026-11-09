@@ -1,0 +1,167 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Entities/Monster/monster.gd" id="1_monster"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="3_health_com"]
+[ext_resource type="Script" path="res://Scripts/Components/health_bar_component.gd" id="4_health_bar"]
+[ext_resource type="Script" path="res://Scripts/Components/hit_flash_component.gd" id="5_hit_flash_"]
+[ext_resource type="Script" path="res://Scripts/Components/lane_combat_component.gd" id="6_lane_comba"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="7_state_char"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_compound_s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_atomic_sta"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_transitio"]
+[ext_resource type="Script" path="res://Scripts/Resources/sound_effect.gd" id="90_sound_effect"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/monster_bite.wav" id="91_monster_bite"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/monster_spit.wav" id="92_monster_spit"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/monster_defeated.wav" id="93_monster_defeated"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/boss_defeated.wav" id="94_boss_defeated"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/hero_respawned.wav" id="95_hero_respawned"]
+
+[sub_resource type="Resource" id="SoundEffect_melee_attack_sound"]
+script = ExtResource("90_sound_effect")
+streams = Array[AudioStream]([ExtResource("91_monster_bite")])
+volume_db = -13.0
+pitch_variation = 0.15
+min_interval_seconds = 0.08
+
+[sub_resource type="Resource" id="SoundEffect_ranged_attack_sound"]
+script = ExtResource("90_sound_effect")
+streams = Array[AudioStream]([ExtResource("92_monster_spit")])
+volume_db = -13.0
+pitch_variation = 0.15
+min_interval_seconds = 0.08
+
+[sub_resource type="Resource" id="SoundEffect_defeated_sound"]
+script = ExtResource("90_sound_effect")
+streams = Array[AudioStream]([ExtResource("93_monster_defeated")])
+volume_db = -9.0
+pitch_variation = 0.12
+min_interval_seconds = 0.06
+
+[sub_resource type="Resource" id="SoundEffect_boss_defeated_sound"]
+script = ExtResource("90_sound_effect")
+streams = Array[AudioStream]([ExtResource("94_boss_defeated")])
+volume_db = -3.0
+
+[sub_resource type="Resource" id="SoundEffect_revived_sound"]
+script = ExtResource("90_sound_effect")
+streams = Array[AudioStream]([ExtResource("95_hero_respawned")])
+volume_db = -8.0
+pitch_scale = 0.7
+pitch_variation = 0.05
+min_interval_seconds = 0.2
+
+[node name="Monster" type="Node2D"]
+script = ExtResource("1_monster")
+melee_attack_sound = SubResource("SoundEffect_melee_attack_sound")
+ranged_attack_sound = SubResource("SoundEffect_ranged_attack_sound")
+defeated_sound = SubResource("SoundEffect_defeated_sound")
+boss_defeated_sound = SubResource("SoundEffect_boss_defeated_sound")
+revived_sound = SubResource("SoundEffect_revived_sound")
+
+[node name="Shadow" type="Node2D" parent="."]
+position = Vector2(0, 30)
+script = ExtResource("2_placeholde")
+size = Vector2(56, 14)
+color = Color(0, 0, 0, 0.3)
+outline_width = 0.0
+
+[node name="Body" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Visual" type="Node2D" parent="Body"]
+unique_name_in_owner = true
+
+[node name="Tint" type="Node2D" parent="Body/Visual"]
+unique_name_in_owner = true
+
+[node name="Art" type="Sprite2D" parent="Body/Visual/Tint"]
+unique_name_in_owner = true
+
+[node name="Shape" type="Node2D" parent="Body/Visual/Tint"]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("2_placeholde")
+size = Vector2(64, 64)
+color = Color(0.85, 0.3, 0.3, 1)
+outline_color = Color(0, 0, 0, 0.45)
+
+
+[node name="HealthBarComponent" type="ProgressBar" parent="Body" node_paths=PackedStringArray("health_component")]
+unique_name_in_owner = true
+offset_left = -36.0
+offset_top = -52.0
+offset_right = 36.0
+offset_bottom = -44.0
+script = ExtResource("4_health_bar")
+health_component = NodePath("../../HealthComponent")
+hide_when_full = false
+fill_color = Color(0.95, 0.3, 0.35, 1)
+
+[node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_health_com")
+
+[node name="HitFlashComponent" type="Node" parent="." node_paths=PackedStringArray("flash_target", "health_component")]
+unique_name_in_owner = true
+script = ExtResource("5_hit_flash_")
+flash_target = NodePath("../Body/Visual")
+health_component = NodePath("../HealthComponent")
+
+[node name="LaneCombatComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+unique_name_in_owner = true
+script = ExtResource("6_lane_comba")
+actor = NodePath("..")
+team = 2
+
+[node name="StateChart" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_state_char")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("8_compound_s")
+initial_state = NodePath("Alive")
+
+[node name="Alive" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_compound_s")
+initial_state = NodePath("Marching")
+
+[node name="ToDead" type="Node" parent="StateChart/Root/Alive"]
+script = ExtResource("10_transitio")
+to = NodePath("../../Dead")
+event = &"died"
+delay_in_seconds = "0.0"
+
+[node name="Marching" type="Node" parent="StateChart/Root/Alive"]
+script = ExtResource("9_atomic_sta")
+
+[node name="ToFighting" type="Node" parent="StateChart/Root/Alive/Marching"]
+script = ExtResource("10_transitio")
+to = NodePath("../../Fighting")
+event = &"target_in_range"
+delay_in_seconds = "0.0"
+
+[node name="Fighting" type="Node" parent="StateChart/Root/Alive"]
+script = ExtResource("9_atomic_sta")
+
+[node name="ToMarching" type="Node" parent="StateChart/Root/Alive/Fighting"]
+script = ExtResource("10_transitio")
+to = NodePath("../../Marching")
+event = &"target_out_of_range"
+delay_in_seconds = "0.0"
+
+[node name="Dead" type="Node" parent="StateChart/Root"]
+script = ExtResource("9_atomic_sta")
+
+[node name="ToAlive" type="Node" parent="StateChart/Root/Dead"]
+script = ExtResource("10_transitio")
+to = NodePath("../../Alive")
+event = &"respawn"
+delay_in_seconds = "0.0"
+
+[connection signal="target_in_reach" from="LaneCombatComponent" to="." method="_on_lane_combat_component_target_in_reach"]
+[connection signal="target_lost" from="LaneCombatComponent" to="." method="_on_lane_combat_component_target_lost"]
+[connection signal="attacked" from="LaneCombatComponent" to="." method="_on_lane_combat_component_attacked"]
+[connection signal="state_physics_processing" from="StateChart/Root/Alive/Marching" to="." method="_on_marching_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Alive/Fighting" to="." method="_on_fighting_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Dead" to="." method="_on_dead_state_entered"]

@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="HeroData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/hero_data.gd" id="1_hero_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/star_bonus.gd" id="star_bonus_script"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/human.tres" id="3_race"]
+[ext_resource type="Resource" path="res://Ressources/Skills/skill_war_cry.tres" id="2_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Attacks/attack_slash.tres" id="9_attack_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Heroes/banner_knight.png" id="20_art"]
+
+[sub_resource type="Resource" id="star_1"]
+script = ExtResource("star_bonus_script")
+stat = 1
+amount = 0.25
+scope = 0
+
+[sub_resource type="Resource" id="star_2"]
+script = ExtResource("star_bonus_script")
+stat = 0
+amount = 0.15
+scope = 1
+
+[sub_resource type="Resource" id="star_3"]
+script = ExtResource("star_bonus_script")
+stat = 1
+amount = 0.5
+scope = 2
+race = ExtResource("3_race")
+
+[sub_resource type="Resource" id="star_4"]
+script = ExtResource("star_bonus_script")
+stat = 3
+amount = 0.05
+scope = 1
+
+[sub_resource type="Resource" id="star_5"]
+script = ExtResource("star_bonus_script")
+stat = 2
+amount = 0.25
+scope = 1
+
+[resource]
+script = ExtResource("1_hero_data")
+id = &"banner_knight"
+race = ExtResource("3_race")
+rarity = 3
+display_name = "Banner Knight"
+role = "Leads the charge, rallies the squad"
+color = Color(0.95, 0.75, 0.35, 1)
+shape_kind = 4
+visual_size = Vector2(70, 70)
+skill = ExtResource("2_skill")
+attack_style = 0
+base_damage = 9000.0
+attack_interval_seconds = 1.1
+base_health = 60000.0
+defense = 0.3
+crit_chance = 0.05
+crit_multiplier = 2.0
+move_speed = 150.0
+attack_range = 40.0
+base_cost = 5000000.0
+cost_growth = 1.075
+attack_sound = ExtResource("9_attack_sound")
+icon = ExtResource("20_art")
+star_bonuses = Array[ExtResource("star_bonus_script")]([SubResource("star_1"), SubResource("star_2"), SubResource("star_3"), SubResource("star_4"), SubResource("star_5")])

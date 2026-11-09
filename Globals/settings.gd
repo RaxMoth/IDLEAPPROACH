@@ -1,11 +1,12 @@
 ## Player preferences (audio, haptics, language, ...). Stored separately from
 ## the savegame in user://settings.cfg so "reset progress" keeps preferences.
+## Test scenes (res://Tests/) use user://test_settings.cfg instead.
 ##
 ## Add your own setting: put a KEY_ constant + default into DEFAULTS, then use
 ## Settings.get_value / set_value. Changes are applied immediately, persisted
 ## and broadcast through Events.setting_changed.
 ##
-## Dependencies: Events autoload
+## Dependencies: Events, Global autoloads
 extends Node
 
 const SETTINGS_PATH: String = "user://settings.cfg"
@@ -39,9 +40,11 @@ const BUS_SFX: StringName = &"SFX"
 const SUPPORTED_LOCALES: PackedStringArray = ["en", "de"]
 
 var _values: Dictionary[StringName, Variant] = {}
+var _settings_path: String = SETTINGS_PATH
 
 
 func _ready() -> void:
+	_settings_path = Global.resolve_user_path(SETTINGS_PATH)
 	_values = DEFAULTS.duplicate()
 	_load()
 	for setting_key: StringName in _values:
@@ -108,7 +111,7 @@ func _set_bus_volume(bus_name: StringName, linear_volume: float) -> void:
 
 func _load() -> void:
 	var config_file: ConfigFile = ConfigFile.new()
-	if config_file.load(SETTINGS_PATH) != OK:
+	if config_file.load(_settings_path) != OK:
 		return
 	for setting_key: StringName in DEFAULTS:
 		var stored_value: Variant = config_file.get_value(SECTION, setting_key, DEFAULTS[setting_key])
@@ -121,6 +124,6 @@ func _save() -> void:
 	var config_file: ConfigFile = ConfigFile.new()
 	for setting_key: StringName in _values:
 		config_file.set_value(SECTION, setting_key, _values[setting_key])
-	var error: Error = config_file.save(SETTINGS_PATH)
+	var error: Error = config_file.save(_settings_path)
 	if error != OK:
 		push_warning("Settings: could not save (%s)" % error_string(error))

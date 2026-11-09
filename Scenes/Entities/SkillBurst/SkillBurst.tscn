@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Entities/SkillBurst/skill_burst.gd" id="1_skill_burst"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+
+[node name="SkillBurst" type="Node2D"]
+z_index = 15
+script = ExtResource("1_skill_burst")
+
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_placeholde")
+size = Vector2(200, 200)
+color = Color(1, 1, 1, 0.35)
+outline_color = Color(1, 1, 1, 1)
+outline_width = 6.0

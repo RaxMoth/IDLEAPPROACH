@@ -1,0 +1,129 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Entities/BattleBase/battle_base.gd" id="1_battle_base"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+[ext_resource type="Script" path="res://Scripts/Components/health_component.gd" id="3_health_com"]
+[ext_resource type="Script" path="res://Scripts/Components/health_bar_component.gd" id="4_health_bar"]
+[ext_resource type="Script" path="res://Scripts/Components/hit_flash_component.gd" id="5_hit_flash_"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="6_state_char"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_compound_s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="8_atomic_sta"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="9_transition"]
+[ext_resource type="Script" path="res://Scripts/Resources/sound_effect.gd" id="90_sound_effect"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/base_hit.wav" id="91_base_hit"]
+[ext_resource type="AudioStream" path="res://Assets/Audio/Sfx/base_destroyed.wav" id="92_base_destroyed"]
+
+[sub_resource type="Resource" id="SoundEffect_hit_sound"]
+script = ExtResource("90_sound_effect")
+streams = Array[AudioStream]([ExtResource("91_base_hit")])
+volume_db = -11.0
+pitch_variation = 0.1
+min_interval_seconds = 0.25
+
+[sub_resource type="Resource" id="SoundEffect_destroyed_sound"]
+script = ExtResource("90_sound_effect")
+streams = Array[AudioStream]([ExtResource("92_base_destroyed")])
+volume_db = -1.0
+
+[node name="BattleBase" type="Node2D"]
+script = ExtResource("1_battle_base")
+hit_sound = SubResource("SoundEffect_hit_sound")
+destroyed_sound = SubResource("SoundEffect_destroyed_sound")
+
+[node name="Body" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Visual" type="Node2D" parent="Body"]
+unique_name_in_owner = true
+
+[node name="Placeholder" type="Node2D" parent="Body/Visual"]
+unique_name_in_owner = true
+
+[node name="Tower" type="Node2D" parent="Body/Visual/Placeholder"]
+position = Vector2(0, -70)
+script = ExtResource("2_placeholde")
+shape_kind = 1
+size = Vector2(96, 140)
+color = Color(0.55, 0.52, 0.5, 1)
+outline_color = Color(0, 0, 0, 0.45)
+
+[node name="Gate" type="Node2D" parent="Body/Visual/Placeholder"]
+position = Vector2(0, -24)
+script = ExtResource("2_placeholde")
+shape_kind = 4
+size = Vector2(36, 48)
+color = Color(0.25, 0.2, 0.18, 1)
+outline_width = 0.0
+
+[node name="Roof" type="Node2D" parent="Body/Visual/Placeholder"]
+unique_name_in_owner = true
+position = Vector2(0, -170)
+rotation = -1.5708
+script = ExtResource("2_placeholde")
+shape_kind = 2
+size = Vector2(70, 120)
+color = Color(0.35, 0.6, 1, 1)
+outline_color = Color(0, 0, 0, 0.45)
+
+[node name="Flag" type="Node2D" parent="Body/Visual/Placeholder"]
+unique_name_in_owner = true
+position = Vector2(14, -222)
+script = ExtResource("2_placeholde")
+shape_kind = 1
+size = Vector2(28, 16)
+color = Color(0.35, 0.6, 1, 1)
+outline_width = 0.0
+
+[node name="Art" type="Sprite2D" parent="Body/Visual"]
+unique_name_in_owner = true
+centered = false
+
+[node name="HealthBarComponent" type="ProgressBar" parent="Body" node_paths=PackedStringArray("health_component")]
+offset_left = -60.0
+offset_top = -272.0
+offset_right = 60.0
+offset_bottom = -258.0
+script = ExtResource("4_health_bar")
+health_component = NodePath("../../HealthComponent")
+hide_when_full = false
+fill_color = Color(0.4, 0.9, 0.45, 1)
+
+[node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_health_com")
+
+[node name="HitFlashComponent" type="Node" parent="." node_paths=PackedStringArray("flash_target", "health_component")]
+unique_name_in_owner = true
+script = ExtResource("5_hit_flash_")
+flash_target = NodePath("../Body/Visual")
+health_component = NodePath("../HealthComponent")
+flash_color = Color(2, 2, 2, 1)
+
+[node name="StateChart" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_state_char")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("7_compound_s")
+initial_state = NodePath("Standing")
+
+[node name="Standing" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_atomic_sta")
+
+[node name="ToDestroyed" type="Node" parent="StateChart/Root/Standing"]
+script = ExtResource("9_transition")
+to = NodePath("../../Destroyed")
+event = &"died"
+delay_in_seconds = "0.0"
+
+[node name="Destroyed" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_atomic_sta")
+
+[node name="ToStanding" type="Node" parent="StateChart/Root/Destroyed"]
+script = ExtResource("9_transition")
+to = NodePath("../../Standing")
+event = &"respawn"
+delay_in_seconds = "0.0"
+
+[connection signal="state_entered" from="StateChart/Root/Standing" to="." method="_on_standing_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Destroyed" to="." method="_on_destroyed_state_entered"]

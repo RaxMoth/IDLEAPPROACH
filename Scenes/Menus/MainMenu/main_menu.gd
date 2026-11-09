@@ -40,8 +40,13 @@ func _refresh_daily_button() -> void:
 		_daily_button.scale = Vector2.ONE
 
 
+## Single-mode games (e.g. the idle battle) skip the level select.
 func _on_play_button_pressed() -> void:
-	SceneManager.change_scene(GameConfig.get_default().level_select_scene)
+	var config: GameConfig = GameConfig.get_default()
+	if config.levels.size() == 1:
+		LevelBase.start_level(config.levels[0])
+	else:
+		SceneManager.change_scene(config.level_select_scene)
 
 
 func _on_shop_button_pressed() -> void:

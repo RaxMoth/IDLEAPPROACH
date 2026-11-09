@@ -1,0 +1,282 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/safe_area_container.gd" id="safe_area_script"]
+[ext_resource type="Script" path="res://Scenes/UI/BattleMenu/battle_menu.gd" id="1_battle_menu"]
+[ext_resource type="Script" path="res://Scripts/UI/currency_display.gd" id="2_currency_d"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/tab_heroes.png" id="3_tab_heroes"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/tab_income.png" id="4_tab_income"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/tab_relics.png" id="5_tab_relics"]
+[ext_resource type="Script" path="res://Scripts/UI/icon_value.gd" id="6_icon_value"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/chest.png" id="7_chest"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/key.png" id="8_key"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/hero_index.png" id="9_hero_index"]
+[ext_resource type="Texture2D" path="res://Assets/Art/UI/nav_center.png" id="10_nav_center"]
+[ext_resource type="Texture2D" path="res://Assets/Art/UI/nav_center_pressed.png" id="11_nav_center_pressed"]
+[ext_resource type="Script" path="res://Scripts/UI/chest_odds_row.gd" id="12_odds_row"]
+
+[node name="BattleMenu" type="PanelContainer"]
+theme_type_variation = &"DockBottomPanel"
+script = ExtResource("1_battle_menu")
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("safe_area_script")
+base_margin = 0
+apply_top = false
+apply_bottom = true
+
+[node name="Content" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Toolbar" type="HBoxContainer" parent="SafeArea/Content"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PageTitle" type="Label" parent="SafeArea/Content/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Heroes"
+
+[node name="BuyAmountButton" type="Button" parent="SafeArea/Content/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 64)
+layout_mode = 2
+theme_type_variation = &"SecondaryButton"
+theme_override_font_sizes/font_size = 26
+text = "x1"
+
+[node name="HeroesPage" type="ScrollContainer" parent="SafeArea/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="HeroList" type="VBoxContainer" parent="SafeArea/Content/HeroesPage"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="IncomePage" type="ScrollContainer" parent="SafeArea/Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="IncomeList" type="VBoxContainer" parent="SafeArea/Content/IncomePage"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="RelicsPage" type="ScrollContainer" parent="SafeArea/Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RelicContent" type="VBoxContainer" parent="SafeArea/Content/RelicsPage"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="RebirthCard" type="PanelContainer" parent="SafeArea/Content/RelicsPage/RelicContent"]
+layout_mode = 2
+theme_type_variation = &"CardPanel"
+
+[node name="RebirthContent" type="VBoxContainer" parent="SafeArea/Content/RelicsPage/RelicContent/RebirthCard"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SoulsRow" type="HBoxContainer" parent="SafeArea/Content/RelicsPage/RelicContent/RebirthCard/RebirthContent"]
+layout_mode = 2
+
+[node name="SoulsCaption" type="Label" parent="SafeArea/Content/RelicsPage/RelicContent/RebirthCard/RebirthContent/SoulsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Souls"
+
+[node name="SoulsDisplay" type="PanelContainer" parent="SafeArea/Content/RelicsPage/RelicContent/RebirthCard/RebirthContent/SoulsRow"]
+layout_mode = 2
+script = ExtResource("2_currency_d")
+currency_id = &"souls"
+
+[node name="RebirthInfoLabel" type="Label" parent="SafeArea/Content/RelicsPage/RelicContent/RebirthCard/RebirthContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Reach stage 40 to rebirth."
+autowrap_mode = 3
+
+[node name="RebirthButton" type="Button" parent="SafeArea/Content/RelicsPage/RelicContent/RebirthCard/RebirthContent"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_type_variation = &"DangerButton"
+theme_override_constants/icon_max_width = 40
+text = "Rebirth"
+
+[node name="RelicList" type="VBoxContainer" parent="SafeArea/Content/RelicsPage/RelicContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CollectionPage" type="ScrollContainer" parent="SafeArea/Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CollectionContent" type="VBoxContainer" parent="SafeArea/Content/CollectionPage"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CollectionHeader" type="HBoxContainer" parent="SafeArea/Content/CollectionPage/CollectionContent"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CollectionValue" type="HBoxContainer" parent="SafeArea/Content/CollectionPage/CollectionContent/CollectionHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("6_icon_value")
+icon = ExtResource("9_hero_index")
+icon_size = 36.0
+text = "1/12"
+
+[node name="OddsRow" type="HBoxContainer" parent="SafeArea/Content/CollectionPage/CollectionContent/CollectionHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+script = ExtResource("12_odds_row")
+
+[node name="CollectionGrid" type="GridContainer" parent="SafeArea/Content/CollectionPage/CollectionContent"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 4
+
+[node name="NavBar" type="HBoxContainer" parent="SafeArea/Content"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HeroesTabButton" type="Button" parent="SafeArea/Content/NavBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_type_variation = &"NavTab"
+text = "Heroes"
+icon = ExtResource("3_tab_heroes")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="IncomeTabButton" type="Button" parent="SafeArea/Content/NavBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_type_variation = &"NavTab"
+text = "Income"
+icon = ExtResource("4_tab_income")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="ChestButton" type="TextureButton" parent="SafeArea/Content/NavBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(132, 132)
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("10_nav_center")
+texture_pressed = ExtResource("11_nav_center_pressed")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ChestIcon" type="TextureRect" parent="SafeArea/Content/NavBar/ChestButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 22.0
+offset_right = -24.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_chest")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyBadge" type="PanelContainer" parent="SafeArea/Content/NavBar/ChestButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"PillPanel"
+
+[node name="KeyCount" type="HBoxContainer" parent="SafeArea/Content/NavBar/ChestButton/KeyBadge"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("6_icon_value")
+icon = ExtResource("8_key")
+icon_size = 26.0
+text = "0"
+font_size = 22
+alignment = 1
+
+[node name="RelicsTabButton" type="Button" parent="SafeArea/Content/NavBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_type_variation = &"NavTab"
+text = "Relics"
+icon = ExtResource("5_tab_relics")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="CollectionTabButton" type="Button" parent="SafeArea/Content/NavBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_type_variation = &"NavTab"
+text = "Collection"
+icon = ExtResource("9_hero_index")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="SafeArea/Content/NavBar/HeroesTabButton" to="." method="_on_heroes_tab_button_pressed"]
+[connection signal="pressed" from="SafeArea/Content/NavBar/IncomeTabButton" to="." method="_on_income_tab_button_pressed"]
+[connection signal="pressed" from="SafeArea/Content/NavBar/ChestButton" to="." method="_on_chest_button_pressed"]
+[connection signal="pressed" from="SafeArea/Content/NavBar/RelicsTabButton" to="." method="_on_relics_tab_button_pressed"]
+[connection signal="pressed" from="SafeArea/Content/NavBar/CollectionTabButton" to="." method="_on_collection_tab_button_pressed"]
+[connection signal="pressed" from="SafeArea/Content/Toolbar/BuyAmountButton" to="." method="_on_buy_amount_button_pressed"]
+[connection signal="pressed" from="SafeArea/Content/RelicsPage/RelicContent/RebirthCard/RebirthContent/RebirthButton" to="." method="_on_rebirth_button_pressed"]

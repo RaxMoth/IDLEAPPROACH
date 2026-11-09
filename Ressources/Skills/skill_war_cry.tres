@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RallySkill" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skills/rally_skill.gd" id="1_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Skills/skill_horn.tres" id="9_cast_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/skill_horn.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_skill")
+attack_speed_multiplier = 1.6
+duration_seconds = 5.0
+effect_color = Color(1.0, 0.8, 0.35, 1)
+id = &"war_cry"
+title = "War Cry"
+cooldown_seconds = 15.0
+cast_sound = ExtResource("9_cast_sound")
+icon = ExtResource("20_icon")

@@ -1,5 +1,6 @@
 ## Shop: persistent upgrades (soft currency), a rewarded-ad freebie and
-## in-app purchases. Rebuilds itself whenever balances change.
+## in-app purchases. Rebuilds itself whenever balances change. Sections with
+## nothing to show (no shop upgrades, ads disabled) are left out.
 ##
 ## Dependencies: Profile, Store, Ads, UI, SceneManager, Events autoloads
 extends Control
@@ -20,14 +21,19 @@ func _ready() -> void:
 func _rebuild() -> void:
 	Global.remove_all_children(_sections)
 	var config: GameConfig = GameConfig.get_default()
-	_add_header(tr("Upgrades"))
+	var shop_upgrades: Array[UpgradeData] = []
 	for upgrade: UpgradeData in config.upgrades:
 		if upgrade.show_in_shop:
+			shop_upgrades.append(upgrade)
+	if not shop_upgrades.is_empty():
+		_add_header(tr("Upgrades"))
+		for upgrade: UpgradeData in shop_upgrades:
 			_add_upgrade_row(upgrade)
-	_add_header(tr("Free Coins"))
-	var free_row: ShopItemRow = _add_row()
-	free_row.setup(tr("Watch an ad"), "", "+%d ●" % FREE_COINS_AMOUNT, "▶ " + tr("Free Coins"), Ads.is_rewarded_ready())
-	free_row.buy_pressed.connect(_on_free_coins_pressed)
+	if config.ads_enabled:
+		_add_header(tr("Free Coins"))
+		var free_row: ShopItemRow = _add_row()
+		free_row.setup(tr("Watch an ad"), "", "+%d ●" % FREE_COINS_AMOUNT, "▶ " + tr("Free Coins"), Ads.is_rewarded_ready())
+		free_row.buy_pressed.connect(_on_free_coins_pressed)
 	_add_header(tr("Store"))
 	for product: ProductData in Store.get_products():
 		_add_product_row(product)

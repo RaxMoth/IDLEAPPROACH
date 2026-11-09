@@ -1,0 +1,259 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Game/LevelBase/LevelBase.tscn" id="1_LevelBase"]
+[ext_resource type="Script" path="res://Scenes/Game/Battle/battle.gd" id="2_battle"]
+[ext_resource type="Resource" path="res://Ressources/Levels/battle.tres" id="3_battle_level"]
+[ext_resource type="Script" path="res://Scenes/Game/Battle/battle_backdrop.gd" id="4_backdrop"]
+[ext_resource type="Script" path="res://Scenes/Game/Battle/hero_squad.gd" id="5_hero_squad"]
+[ext_resource type="PackedScene" path="res://Scenes/Entities/Hero/Hero.tscn" id="6_Hero"]
+[ext_resource type="Script" path="res://Scenes/Game/Battle/stage_director.gd" id="7_stage_dire"]
+[ext_resource type="PackedScene" path="res://Scenes/Entities/Monster/Monster.tscn" id="8_Monster"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="9_state_char"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="10_compound_s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="11_atomic_sta"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="12_transition"]
+[ext_resource type="Script" path="res://Scenes/Game/Battle/battle_lane.gd" id="13_battle_lane"]
+[ext_resource type="Script" path="res://Scripts/UI/safe_area_container.gd" id="14_safe_area_"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/StageBar/StageBar.tscn" id="15_StageBar"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/BattleMenu/BattleMenu.tscn" id="16_BattleMenu"]
+[ext_resource type="PackedScene" path="res://Scenes/Entities/BattleBase/BattleBase.tscn" id="17_BattleBase"]
+[ext_resource type="Script" path="res://Scenes/Game/Battle/income_ticker.gd" id="18_income_tick"]
+[ext_resource type="Script" path="res://Scripts/Input/gesture_detector.gd" id="19_gesture_de"]
+[ext_resource type="Resource" path="res://Ressources/Audio/battle_sounds.tres" id="90_battle_sounds"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Bases/player_base.png" id="91_player_base_art"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Bases/enemy_base.png" id="92_enemy_base_art"]
+
+[sub_resource type="Gradient" id="Gradient_vignette"]
+offsets = PackedFloat32Array(0.55, 1)
+colors = PackedColorArray(0.11, 0.09, 0.12, 0, 0.07, 0.05, 0.08, 0.62)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vignette"]
+gradient = SubResource("Gradient_vignette")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.48)
+fill_to = Vector2(1, 1)
+
+[node name="Battle" instance=ExtResource("1_LevelBase")]
+script = ExtResource("2_battle")
+level_data = ExtResource("3_battle_level")
+show_intro_countdown = false
+show_score = false
+sounds = ExtResource("90_battle_sounds")
+
+[node name="GameCamera" parent="."]
+enable_touch_pan = true
+pan_axes = Vector2(1, 0)
+pan_limits = Rect2(0, -2000, 2220, 6000)
+
+[node name="Backdrop" type="Node2D" parent="World"]
+unique_name_in_owner = true
+script = ExtResource("4_backdrop")
+area = Rect2(-400, -600, 3020, 2400)
+
+[node name="Lane" type="Node2D" parent="World"]
+unique_name_in_owner = true
+script = ExtResource("13_battle_lane")
+
+[node name="PlayerBase" parent="World" instance=ExtResource("17_BattleBase")]
+unique_name_in_owner = true
+position = Vector2(62, 662)
+team = 1
+banner_color = Color(0.35, 0.6, 1, 1)
+art = ExtResource("91_player_base_art")
+
+[node name="EnemyBase" parent="World" instance=ExtResource("17_BattleBase")]
+unique_name_in_owner = true
+position = Vector2(2158, 662)
+team = 2
+banner_color = Color(0.9, 0.3, 0.3, 1)
+art = ExtResource("92_enemy_base_art")
+
+[node name="MonsterLane" type="Node2D" parent="World"]
+unique_name_in_owner = true
+
+[node name="SpawnPoint" type="Marker2D" parent="World"]
+unique_name_in_owner = true
+position = Vector2(2125, 612)
+
+[node name="Squad" type="Node2D" parent="World" node_paths=PackedStringArray("lane", "rally_points")]
+unique_name_in_owner = true
+script = ExtResource("5_hero_squad")
+hero_scene = ExtResource("6_Hero")
+lane = NodePath("../Lane")
+rally_points = [NodePath("RallyFrontTop"), NodePath("RallyFrontBottom"), NodePath("RallyMiddle"), NodePath("RallyBackTop"), NodePath("RallyBackBottom"), NodePath("RallyRear"), NodePath("RallyReserveTop"), NodePath("RallyReserveBottom"), NodePath("RallyReserveTop2"), NodePath("RallyReserveBottom2"), NodePath("RallyReserveTop3"), NodePath("RallyReserveBottom3")]
+
+[node name="RallyFrontTop" type="Marker2D" parent="World/Squad"]
+position = Vector2(150, 575)
+
+[node name="RallyFrontBottom" type="Marker2D" parent="World/Squad"]
+position = Vector2(150, 652)
+
+[node name="RallyMiddle" type="Marker2D" parent="World/Squad"]
+position = Vector2(80, 575)
+
+[node name="RallyBackTop" type="Marker2D" parent="World/Squad"]
+position = Vector2(80, 652)
+
+[node name="RallyBackBottom" type="Marker2D" parent="World/Squad"]
+position = Vector2(10, 575)
+
+[node name="RallyRear" type="Marker2D" parent="World/Squad"]
+position = Vector2(10, 652)
+
+[node name="RallyReserveTop" type="Marker2D" parent="World/Squad"]
+position = Vector2(-60, 575)
+
+[node name="RallyReserveBottom" type="Marker2D" parent="World/Squad"]
+position = Vector2(-60, 652)
+
+[node name="RallyReserveTop2" type="Marker2D" parent="World/Squad"]
+position = Vector2(-130, 575)
+
+[node name="RallyReserveBottom2" type="Marker2D" parent="World/Squad"]
+position = Vector2(-130, 652)
+
+[node name="RallyReserveTop3" type="Marker2D" parent="World/Squad"]
+position = Vector2(-200, 575)
+
+[node name="RallyReserveBottom3" type="Marker2D" parent="World/Squad"]
+position = Vector2(-200, 652)
+
+[node name="StageDirector" type="Node" parent="." node_paths=PackedStringArray("monster_parent", "lane", "player_base", "enemy_base", "spawn_marker")]
+unique_name_in_owner = true
+script = ExtResource("7_stage_dire")
+monster_scene = ExtResource("8_Monster")
+monster_parent = NodePath("../World/MonsterLane")
+lane = NodePath("../World/Lane")
+player_base = NodePath("../World/PlayerBase")
+enemy_base = NodePath("../World/EnemyBase")
+spawn_marker = NodePath("../World/SpawnPoint")
+
+[node name="BattleChart" type="Node" parent="StageDirector"]
+unique_name_in_owner = true
+script = ExtResource("9_state_char")
+
+[node name="Root" type="Node" parent="StageDirector/BattleChart"]
+script = ExtResource("10_compound_s")
+initial_state = NodePath("Standby")
+
+[node name="ToFighting" type="Node" parent="StageDirector/BattleChart/Root"]
+script = ExtResource("12_transition")
+to = NodePath("../Fighting")
+event = &"stage_restart"
+delay_in_seconds = "0.0"
+
+[node name="Standby" type="Node" parent="StageDirector/BattleChart/Root"]
+script = ExtResource("11_atomic_sta")
+
+[node name="Fighting" type="Node" parent="StageDirector/BattleChart/Root"]
+script = ExtResource("11_atomic_sta")
+
+[node name="ToVictory" type="Node" parent="StageDirector/BattleChart/Root/Fighting"]
+script = ExtResource("12_transition")
+to = NodePath("../../Victory")
+event = &"enemy_base_destroyed"
+delay_in_seconds = "0.0"
+
+[node name="ToDefeat" type="Node" parent="StageDirector/BattleChart/Root/Fighting"]
+script = ExtResource("12_transition")
+to = NodePath("../../Defeat")
+event = &"player_base_destroyed"
+delay_in_seconds = "0.0"
+
+[node name="Victory" type="Node" parent="StageDirector/BattleChart/Root"]
+script = ExtResource("11_atomic_sta")
+
+[node name="ToNextStage" type="Node" parent="StageDirector/BattleChart/Root/Victory"]
+script = ExtResource("12_transition")
+to = NodePath("../../Fighting")
+delay_in_seconds = "stage_end_seconds"
+
+[node name="Defeat" type="Node" parent="StageDirector/BattleChart/Root"]
+script = ExtResource("11_atomic_sta")
+
+[node name="ToPreviousStage" type="Node" parent="StageDirector/BattleChart/Root/Defeat"]
+script = ExtResource("12_transition")
+to = NodePath("../../Fighting")
+delay_in_seconds = "stage_end_seconds"
+
+[node name="IncomeTicker" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("18_income_tick")
+
+[node name="GestureDetector" type="Node" parent="."]
+script = ExtResource("19_gesture_de")
+
+[node name="Vignette" type="CanvasLayer" parent="."]
+layer = 1
+
+[node name="VignetteShade" type="TextureRect" parent="Vignette"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vignette")
+expand_mode = 1
+
+[node name="BattleUI" type="CanvasLayer" parent="."]
+layer = 9
+
+[node name="SafeArea" type="MarginContainer" parent="BattleUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("14_safe_area_")
+base_margin = 0
+apply_top = false
+apply_bottom = false
+
+[node name="Layout" type="VBoxContainer" parent="BattleUI/SafeArea"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="StageBar" parent="BattleUI/SafeArea/Layout" instance=ExtResource("15_StageBar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FieldSpace" type="Control" parent="BattleUI/SafeArea/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BattleMenu" parent="BattleUI/SafeArea/Layout" instance=ExtResource("16_BattleMenu")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
+
+[connection signal="state_entered" from="StageDirector/BattleChart/Root/Fighting" to="StageDirector" method="_on_fighting_state_entered"]
+[connection signal="state_processing" from="StageDirector/BattleChart/Root/Fighting" to="StageDirector" method="_on_fighting_state_processing"]
+[connection signal="state_exited" from="StageDirector/BattleChart/Root/Fighting" to="StageDirector" method="_on_fighting_state_exited"]
+[connection signal="state_entered" from="StageDirector/BattleChart/Root/Victory" to="StageDirector" method="_on_stage_end_state_entered"]
+[connection signal="state_entered" from="StageDirector/BattleChart/Root/Defeat" to="StageDirector" method="_on_stage_end_state_entered"]
+[connection signal="destroyed" from="World/EnemyBase" to="StageDirector" method="_on_enemy_base_destroyed"]
+[connection signal="destroyed" from="World/PlayerBase" to="StageDirector" method="_on_player_base_destroyed"]
+[connection signal="health_changed" from="World/PlayerBase" to="." method="_on_player_base_health_changed"]
+[connection signal="health_changed" from="World/EnemyBase" to="." method="_on_enemy_base_health_changed"]
+[connection signal="lane_jump_requested" from="BattleUI/SafeArea/Layout/StageBar" to="." method="_on_stage_bar_lane_jump_requested"]
+[connection signal="resized" from="BattleUI/SafeArea/Layout/FieldSpace" to="." method="_on_field_space_resized"]
+[connection signal="stage_started" from="StageDirector" to="." method="_on_stage_director_stage_started"]
+[connection signal="stage_won" from="StageDirector" to="." method="_on_stage_director_stage_won"]
+[connection signal="stage_lost" from="StageDirector" to="." method="_on_stage_director_stage_lost"]
+[connection signal="monster_defeated" from="StageDirector" to="." method="_on_stage_director_monster_defeated"]
+[connection signal="hero_level_up_requested" from="BattleUI/SafeArea/Layout/BattleMenu" to="." method="_on_battle_menu_hero_level_up_requested"]
+[connection signal="hero_details_requested" from="BattleUI/SafeArea/Layout/BattleMenu" to="." method="_on_battle_menu_hero_details_requested"]
+[connection signal="chest_requested" from="BattleUI/SafeArea/Layout/BattleMenu" to="." method="_on_battle_menu_chest_requested"]
+[connection signal="income_level_up_requested" from="BattleUI/SafeArea/Layout/BattleMenu" to="." method="_on_battle_menu_income_level_up_requested"]
+[connection signal="cycle_completed" from="IncomeTicker" to="." method="_on_income_ticker_cycle_completed"]
+[connection signal="tapped" from="GestureDetector" to="." method="_on_gesture_detector_tapped"]
+[connection signal="relic_purchase_requested" from="BattleUI/SafeArea/Layout/BattleMenu" to="." method="_on_battle_menu_relic_purchase_requested"]
+[connection signal="rebirth_requested" from="BattleUI/SafeArea/Layout/BattleMenu" to="." method="_on_battle_menu_rebirth_requested"]

@@ -65,3 +65,305 @@ Connecting to store…,Connecting to store…,Verbinde mit Store…
 Not enough energy,Not enough energy,Nicht genug Energie
 Finish,Finish,Beenden
 Gold,Gold,Gold
+Rises again!,Rises again!,Erhebt sich erneut!
+Reborn!,Reborn!,Wiedergeboren!
+Boss stage!,Boss stage!,Boss-Stufe!
+Boss: %s — it flies!,Boss: %s — it flies!,Boss: %s – er fliegt!
+Boss: %s,Boss: %s,Boss: %s
+Base destroyed!,Base destroyed!,Basis zerstört!
+Base lost!,Base lost!,Basis verloren!
+Hold the line!,Hold the line!,Haltet die Stellung!
+Not enough gems,Not enough gems,Nicht genug Edelsteine
+"Start again from stage 1 with one hero and no gold, and earn %d souls for permanent relics.","Start again from stage 1 with one hero and no gold, and earn %d souls for permanent relics.",Beginne wieder bei Stufe 1 mit einem Helden und ohne Gold und erhalte %d Seelen für dauerhafte Relikte.
+Rebirth?,Rebirth?,Wiedergeburt?
+Rebirth,Rebirth,Wiedergeburt
+Not yet,Not yet,Noch nicht
++%d %s shard,+%d %s shard,+%d Splitter (%s)
+Your heroes and workers earned %s gold in %s.,Your heroes and workers earned %s gold in %s.,Deine Helden und Arbeiter haben %s Gold verdient – in %s.
+Collect,Collect,Einsammeln
+%s ATK  •  %s HP,%s ATK  •  %s HP,%s ANG  •  %s LP
++%s ATK  +%s HP,+%s ATK  +%s HP,+%s ANG  +%s LP
+Recruit,Recruit,Anwerben
+Lv +%d,Lv +%d,Lv +%d
+● %s / %ss   +%s,● %s / %ss   +%s,● %s / %ss   +%s
+● %s / %ss,● %s / %ss,● %s / %ss
+Unlock,Unlock,Freischalten
+Lv %d,Lv %d,Lv %d
+"Rebirth now for %d souls. Stage, gold, heroes and income reset; relics and stars stay.","Rebirth now for %d souls. Stage, gold, heroes and income reset; relics and stars stay.","Jetzt wiedergeboren werden für %d Seelen. Stufe, Gold, Helden und Erträge werden zurückgesetzt; Relikte und Sterne bleiben."
+Reach stage %d to rebirth (best this run: %d).,Reach stage %d to rebirth (best this run: %d).,Erreiche Stufe %d für die Wiedergeburt (Bestwert in diesem Lauf: %d).
+Rebirth  +%d %s,Rebirth  +%d %s,Wiedergeburt  +%d %s
+Heroes,Heroes,Helden
+Income,Income,Erträge
+Relics,Relics,Relikte
+Souls,Souls,Seelen
+Ranged,Ranged,Fernkampf
+Melee,Melee,Nahkampf
+Flying,Flying,Fliegend
+Ground,Ground,Boden
+Skill,Skill,Fähigkeit
+Skill: %s  •  every %ss,Skill: %s  •  every %ss,Fähigkeit: %s  •  alle %ss
+No skill,No skill,Keine Fähigkeit
+Casts on its own; damage grows with attack.,Casts on its own; damage grows with attack.,Wirkt von selbst; der Schaden wächst mit dem Angriff.
+Buy %d shards  ◆ %d   (you have ◆ %d),Buy %d shards  ◆ %d   (you have ◆ %d),%d Splitter kaufen  ◆ %d   (du hast ◆ %d)
+Buy shards,Buy shards,Splitter kaufen
+Max stars  •  %d shards,Max stars  •  %d shards,Max. Sterne  •  %d Splitter
+Max stars,Max stars,Max. Sterne
+Shards %d / %d,Shards %d / %d,Splitter %d / %d
+Star up,Star up,Stern +1
+Not recruited,Not recruited,Nicht angeworben
+Level,Level,Level
+Each level adds +%s attack and +%s health. Every %d levels doubles both — next at Lv %d.,Each level adds +%s attack and +%s health. Every %d levels doubles both — next at Lv %d.,Jedes Level gibt +%s Angriff und +%s Leben. Alle %d Level verdoppeln sich beide – das nächste Mal bei Lv %d.
+Attack,Attack,Angriff
+%s per hit,%s per hit,%s pro Treffer
+"Damage of each hit before the target's defense. Stars, the Warlord's Blade relic and the Celestial team bonus raise it.","Damage of each hit before the target's defense. Stars, the Warlord's Blade relic and the Celestial team bonus raise it.","Schaden jedes Treffers vor der Verteidigung des Ziels. Sterne, das Relikt Klinge des Kriegsherrn und der Teambonus der Himmlischen erhöhen ihn."
+Includes +%d%% from the Elf team bonus.,Includes +%d%% from the Elf team bonus.,Enthält +%d%% vom Teambonus der Elfen.
+Includes +%d%% from the Dwarf team bonus.,Includes +%d%% from the Dwarf team bonus.,Enthält +%d%% vom Teambonus der Zwerge.
+Attack speed,Attack speed,Angriffstempo
+%s / s,%s / s,%s / s
+Hits per second.,Hits per second.,Treffer pro Sekunde.
+DPS,DPS,DPS
+"Average damage per second with crits, before the target's defense.","Average damage per second with crits, before the target's defense.","Durchschnittlicher Schaden pro Sekunde mit kritischen Treffern, vor der Verteidigung des Ziels."
+Health,Health,Leben
+Damage it can take. A fallen hero gets back up at your base after %ss and walks back to the fight.,Damage it can take. A fallen hero gets back up at your base after %ss and walks back to the fight.,"Schaden, den er aushält. Ein gefallener Held steht nach %ss an deiner Basis wieder auf und kehrt in den Kampf zurück."
+Defense,Defense,Verteidigung
+Blocks %d%% of every hit it takes (never more than %d%%).,Blocks %d%% of every hit it takes (never more than %d%%).,Blockt %d%% jedes erlittenen Treffers (nie mehr als %d%%).
+Critical hits,Critical hits,Kritische Treffer
+%d%% for x%s,%d%% for x%s,%d%% für x%s
+%d%% of its hits deal x%s damage. Elemental monsters take 50%% more from crits.,%d%% of its hits deal x%s damage. Elemental monsters take 50%% more from crits.,%d%% seiner Treffer verursachen x%s Schaden. Elementare erleiden durch kritische Treffer 50%% mehr.
+Range,Range,Reichweite
+Ranged (%d),Ranged (%d),Fernkampf (%d)
+Stops %d away from the first enemy and shoots from behind the front line.,Stops %d away from the first enemy and shoots from behind the front line.,Bleibt %d vor dem ersten Gegner stehen und schießt hinter der Front hervor.
+Melee (%d),Melee (%d),Nahkampf (%d)
+"Walks up to enemies and fights up close, holding the front line.","Walks up to enemies and fights up close, holding the front line.","Geht auf Gegner zu, kämpft aus nächster Nähe und hält die Front."
+Flying enemies,Flying enemies,Fliegende Gegner
+Can hit,Can hit,Trifft
+Ranged and flying heroes can hit flying monsters.,Ranged and flying heroes can hit flying monsters.,Fernkampf- und fliegende Helden können fliegende Monster treffen.
+Can't hit,Can't hit,Trifft nicht
+Ground melee heroes can't reach flyers — they fly over. Bring ranged or flying heroes.,Ground melee heroes can't reach flyers — they fly over. Bring ranged or flying heroes.,Nahkämpfer am Boden erreichen keine Flieger – die fliegen darüber hinweg. Bring Fernkampf- oder fliegende Helden mit.
+Movement,Movement,Bewegung
+"Hovers over the lane: ground melee monsters can't hit it, only shooters and flyers.","Hovers over the lane: ground melee monsters can't hit it, only shooters and flyers.","Schwebt über der Bahn: Nahkampfmonster am Boden treffen ihn nicht, nur Schützen und Flieger."
+Walks the lane; every monster can hit it.,Walks the lane; every monster can hit it.,Läuft über die Bahn; jedes Monster kann ihn treffen.
+Move speed,Move speed,Tempo
+How fast it moves along the lane (pixels per second).,How fast it moves along the lane (pixels per second).,Wie schnell er sich über die Bahn bewegt (Pixel pro Sekunde).
+Active: +%d%% %s (%d recruited).,Active: +%d%% %s (%d recruited).,Aktiv: +%d%% %s (%d angeworben).
+Not active yet (%d recruited).,Not active yet (%d recruited).,Noch nicht aktiv (%d angeworben).
+Race,Race,Volk
+Deals +%d%% damage to %s monsters (%s),Deals +%d%% damage to %s monsters (%s),Verursacht +%d%% Schaden gegen %s (%s)
+Stars,Stars,Sterne
+Each star adds +%d%% attack and health (now +%d%%). Shards drop from destroyed enemy bases; stars survive rebirth.,Each star adds +%d%% attack and health (now +%d%%). Shards drop from destroyed enemy bases; stars survive rebirth.,Jeder Stern gibt +%d%% Angriff und Leben (jetzt +%d%%). Zerstörte Feindbasen lassen Splitter fallen; Sterne bleiben nach der Wiedergeburt erhalten.
+Common,Common,Gewöhnlich
+Rare,Rare,Selten
+Epic,Epic,Episch
+Legendary,Legendary,Legendär
+Mythic,Mythic,Mythisch
+Boss,Boss,Boss
+Shooter,Shooter,Schütze
+Damage it can take. Monster health grows x%s per stage.,Damage it can take. Monster health grows x%s per stage.,"Schaden, den es aushält. Monsterleben wächst um x%s pro Stufe."
+"Damage of each hit against your heroes and your base, one hit every %ss.","Damage of each hit against your heroes and your base, one hit every %ss.","Schaden jedes Treffers gegen deine Helden und deine Basis, ein Treffer alle %ss."
+Blocks %d%% of every hit your heroes deal.,Blocks %d%% of every hit your heroes deal.,Blockt %d%% jedes Treffers deiner Helden.
+Shooter (%d),Shooter (%d),Schütze (%d)
+Stops %d away and shoots — it can hit your flying heroes too.,Stops %d away and shoots — it can hit your flying heroes too.,Bleibt %d entfernt stehen und schießt – es trifft auch deine fliegenden Helden.
+Swoops down on ground and flying heroes alike.,Swoops down on ground and flying heroes alike.,Stürzt sich auf Boden- und fliegende Helden gleichermaßen.
+Fights up close; it can't reach your flying heroes.,Fights up close; it can't reach your flying heroes.,Kämpft aus nächster Nähe; deine fliegenden Helden erreicht es nicht.
+"Flies over your melee heroes: only ranged heroes, flying heroes and area skills can hit it.","Flies over your melee heroes: only ranged heroes, flying heroes and area skills can hit it.",Fliegt über deine Nahkämpfer hinweg: Nur Fernkampf- und fliegende Helden sowie Flächenfähigkeiten treffen es.
+Walks the lane; every hero can hit it.,Walks the lane; every hero can hit it.,Läuft über die Bahn; jeder Held kann es treffen.
+How fast it moves toward your base (pixels per second).,How fast it moves toward your base (pixels per second).,Wie schnell es sich auf deine Basis zubewegt (Pixel pro Sekunde).
+Weak to,Weak to,Schwach gegen
+These heroes deal +%d%% damage to %s monsters.,These heroes deal +%d%% damage to %s monsters.,Diese Helden verursachen +%d%% Schaden gegen %s.
+Enemy power,Enemy power,Feindstärke
+Monsters sent later in a stage are stronger (x%s per second). Break the base before they overrun you.,Monsters sent later in a stage are stronger (x%s per second). Break the base before they overrun you.,"Später in einer Stufe geschickte Monster sind stärker (x%s pro Sekunde). Zerstöre die Basis, bevor sie dich überrennen."
+x%s health,x%s health,x%s Leben
+"Sent once at the start of every %dth stage: x%s health, x%s attack, at least %d%% defense.","Sent once at the start of every %dth stage: x%s health, x%s attack, at least %d%% defense.","Erscheint einmal zu Beginn jeder %d. Stufe: x%s Leben, x%s Angriff, mindestens %d%% Verteidigung."
+Paid when it's defeated.,Paid when it's defeated.,Wird beim Besiegen ausgezahlt.
+Stage %d,Stage %d,Stufe %d
+Enemy power x%s,Enemy power x%s,Feindstärke x%s
+Your base,Your base,Deine Basis
+Enemy base,Enemy base,Feindbasis
++%s/s  •  %s DPS,+%s/s  •  %s DPS,+%s/s  •  %s DPS
+Tip,Tip,Tipp
+Blasts the target and everything near it for %sx damage.,Blasts the target and everything near it for %sx damage.,Trifft das Ziel und alles in seiner Nähe mit %sx Schaden.
+Attacks %sx faster for %ss.,Attacks %sx faster for %ss.,Greift %sx schneller an – für %ss.
+Heals every hero by %d%% of their health.,Heals every hero by %d%% of their health.,Heilt jeden Helden um %d%% seines Lebens.
+Heals every hero by %d%% of their health and your base by %d%%.,Heals every hero by %d%% of their health and your base by %d%%.,Heilt jeden Helden um %d%% seines Lebens und deine Basis um %d%%.
+Every hero attacks %sx faster for %ss.,Every hero attacks %sx faster for %ss.,Jeder Held greift %sx schneller an – für %ss.
+Roots every enemy in reach for %ss (bosses half as long) and hits them for %sx damage.,Roots every enemy in reach for %ss (bosses half as long) and hits them for %sx damage.,Fesselt jeden Gegner in Reichweite für %ss (Bosse halb so lang) und trifft sie mit %sx Schaden.
+Hits the target for %sx damage.,Hits the target for %sx damage.,Trifft das Ziel mit %sx Schaden.
+Hits the target for %sx damage and knocks it back.,Hits the target for %sx damage and knocks it back.,Trifft das Ziel mit %sx Schaden und stößt es zurück.
+Shoots every enemy in reach for %sx damage.,Shoots every enemy in reach for %sx damage.,Beschießt jeden Gegner in Reichweite mit %sx Schaden.
+Arrow Volley,Arrow Volley,Pfeilhagel
+Blessing,Blessing,Segen
+Cannon Barrage,Cannon Barrage,Kanonensalve
+Chain Lightning,Chain Lightning,Kettenblitz
+Dive,Dive,Sturzflug
+Entangle,Entangle,Umranken
+Fireball,Fireball,Feuerball
+Holy Bastion,Holy Bastion,Heilige Bastion
+Judgment,Judgment,Gottesurteil
+Rapid Fire,Rapid Fire,Schnellfeuer
+Shield Bash,Shield Bash,Schildstoß
+War Cry,War Cry,Kriegsschrei
+%d: +%d%%,%d: +%d%%,%d: +%d%%
+Team %s with %s heroes — %s,Team %s with %s heroes — %s,%s fürs Team durch %s — %s
+attack,attack,Angriff
+health,health,Leben
+attack speed,attack speed,Angriffstempo
+defense,defense,Verteidigung
+Celestial,Celestial,Himmlische
+Dwarf,Dwarf,Zwerge
+Elf,Elf,Elfen
+Human,Human,Menschen
+Beast,Beast,Bestien
+Fast: moves 30% quicker.,Fast: moves 30% quicker.,Schnell: bewegt sich 30% flinker.
+Demon,Demon,Dämonen
+Grows stronger 50% faster during a stage.,Grows stronger 50% faster during a stage.,Wird während einer Stufe 50% schneller stärker.
+Elemental,Elemental,Elementare
+"Armored (+15% defense), but critical hits deal 50% more.","Armored (+15% defense), but critical hits deal 50% more.","Gepanzert (+15% Verteidigung), aber kritische Treffer richten 50% mehr an."
+Goblinoid,Goblinoid,Goblinoide
+Arrives in bigger groups.,Arrives in bigger groups.,Kommt in größeren Gruppen.
+Undead,Undead,Untote
+Gets up once at 30% health.,Gets up once at 30% health.,Steht einmal mit 30% Leben wieder auf.
++%d%% hero damage,+%d%% hero damage,+%d%% Heldenschaden
++%d%% hero health,+%d%% hero health,+%d%% Heldenleben
++%d%% gold,+%d%% gold,+%d%% Gold
++%d%% base health,+%d%% base health,+%d%% Basisleben
+Bastion Stone,Bastion Stone,Bollwerkstein
+Your base can take more hits.,Your base can take more hits.,Deine Basis hält mehr Treffer aus.
+Golden Idol,Golden Idol,Goldenes Idol
+More gold from monsters and your base.,More gold from monsters and your base.,Mehr Gold von Monstern und deiner Basis.
+Iron Heart,Iron Heart,Eisenherz
+Every hero has more health.,Every hero has more health.,Jeder Held hat mehr Leben.
+Warlord's Blade,Warlord's Blade,Klinge des Kriegsherrn
+Every hero hits harder.,Every hero hits harder.,Jeder Held schlägt härter zu.
+Archer,Archer,Bogenschütze
+Shoots from far behind the line,Shoots from far behind the line,Schießt von weit hinter der Front
+Banner Knight,Banner Knight,Bannerritter
+"Leads the charge, rallies the squad","Leads the charge, rallies the squad",Führt den Angriff an und spornt den Trupp an
+Cannoneer,Cannoneer,Kanonier
+"Slow, crushing cannon shots","Slow, crushing cannon shots","Langsame, vernichtende Kanonenschüsse"
+Cleric,Cleric,Kleriker
+Tough hammer fighter,Tough hammer fighter,Zäher Hammerkämpfer
+Druid,Druid,Druide
+Roots enemies in place,Roots enemies in place,Fesselt Gegner an Ort und Stelle
+Ember Mage,Ember Mage,Glutmagier
+"Slow, heavy fire bolts","Slow, heavy fire bolts","Langsame, schwere Feuerblitze"
+Griffin Knight,Griffin Knight,Greifenritter
+Flies over the melee line,Flies over the melee line,Fliegt über die Nahkampflinie
+Paladin,Paladin,Paladin
+Unstoppable holy knight,Unstoppable holy knight,Unaufhaltsamer heiliger Ritter
+Ranger,Ranger,Waldläufer
+Fast twin-blade shots,Fast twin-blade shots,Schnelle Doppelschüsse
+Seraph,Seraph,Seraph
+Radiant flying archer,Radiant flying archer,Strahlender fliegender Schütze
+Squire,Squire,Knappe
+Sturdy frontline swordsman,Sturdy frontline swordsman,Standhafter Schwertkämpfer an der Front
+Storm Fairy,Storm Fairy,Sturmfee
+Flying spellcaster,Flying spellcaster,Fliegende Zauberin
+Blacksmith,Blacksmith,Schmiede
+Forges and sells blades.,Forges and sells blades.,Schmiedet und verkauft Klingen.
+Copper Mine,Copper Mine,Kupfermine
+"Slow digging, solid ore.","Slow digging, solid ore.","Langsames Graben, solides Erz."
+Fishing Dock,Fishing Dock,Fischersteg
+Brings in the morning catch.,Brings in the morning catch.,Bringt den Morgenfang ein.
+Lumber Camp,Lumber Camp,Holzfällerlager
+"Fells trees for quick, small payouts.","Fells trees for quick, small payouts.","Fällt Bäume für schnelle, kleine Erträge."
+Merchant Caravan,Merchant Caravan,Handelskarawane
+"Long trade routes, big profits.","Long trade routes, big profits.","Lange Handelswege, große Gewinne."
+Royal Mint,Royal Mint,Königliche Münze
+Strikes coins for the crown.,Strikes coins for the crown.,Prägt Münzen für die Krone.
+Battle,Battle,Schlacht
+"Idle base battle: heroes fight on their own, break the enemy base, climb stages.","Idle base battle: heroes fight on their own, break the enemy base, climb stages.","Idle-Basisschlacht: Helden kämpfen von selbst, zerstören die Feindbasis und steigen Stufen auf."
+Idle Tapper,Idle Tapper,Idle-Tipper
+"Clicker / idle: tap, buy upgrades, earn while away.","Clicker / idle: tap, buy upgrades, earn while away.","Clicker / Idle: tippen, Upgrades kaufen, offline verdienen."
+Match-3 Puzzle,Match-3 Puzzle,Match-3-Puzzle
+Swipe to swap gems and reach the target score.,Swipe to swap gems and reach the target score.,"Wische, um Steine zu tauschen, und erreiche die Zielpunktzahl."
+Endless Runner,Endless Runner,Endlos-Runner
+"One-tap jumping. Double jump, dodge, beat your best.","One-tap jumping. Double jump, dodge, beat your best.","Springen mit einem Tipp. Doppelsprung, ausweichen, Rekord schlagen."
+Arena Survivor,Arena Survivor,Arena Survivor
+"Top-down action: joystick, auto-fire, waves, XP and perks.","Top-down action: joystick, auto-fire, waves, XP and perks.","Top-down-Action: Joystick, Dauerfeuer, Wellen, EP und Perks."
+Tower Defense,Tower Defense,Tower Defense
+"Tap build spots, upgrade towers, hold the line.","Tap build spots, upgrade towers, hold the line.","Tippe auf Bauplätze, verbessere Türme, halte die Stellung."
+Coin Robot,Coin Robot,Münzroboter
+"Earns coins every second, even offline.","Earns coins every second, even offline.","Verdient jede Sekunde Münzen, sogar offline."
+Stronger Taps,Stronger Taps,Stärkere Tipps
+More coins per tap.,More coins per tap.,Mehr Münzen pro Tipp.
+Power,Power,Stärke
++10% damage in Arena Survivor.,+10% damage in Arena Survivor.,+10% Schaden in Arena Survivor.
+Vitality,Vitality,Vitalität
++20 max health in Arena Survivor.,+20 max health in Arena Survivor.,+20 max. Leben in Arena Survivor.
+War Chest,War Chest,Kriegskasse
++25 starting gold in Tower Defense.,+25 starting gold in Tower Defense.,+25 Startgold in Tower Defense.
+Slime,Slime,Schleim
+Beetle,Beetle,Käfer
+Goblin Scout,Goblin Scout,Goblin-Späher
+Hornet,Hornet,Hornisse
+Slime King,Slime King,Schleimkönig
+Meadow,Meadow,Wiesenland
+Goblin Slinger,Goblin Slinger,Goblin-Schleuderer
+Cave Spider,Cave Spider,Höhlenspinne
+Treant,Treant,Baumwächter
+Bat,Bat,Fledermaus
+Elder Treant,Elder Treant,Uralter Baumwächter
+Dark Forest,Dark Forest,Finsterwald
+Scorpion,Scorpion,Skorpion
+Mummy,Mummy,Mumie
+Sand Wyrm,Sand Wyrm,Sandwurm
+Bone Vulture,Bone Vulture,Knochengeier
+Sand Colossus,Sand Colossus,Sandkoloss
+Sunscorch Desert,Sunscorch Desert,Sonnenglutwüste
+Ice Imp,Ice Imp,Eiskobold
+Yeti,Yeti,Yeti
+Frost Goblin,Frost Goblin,Frostgoblin
+Frost Wisp,Frost Wisp,Frostirrlicht
+Frost Giant,Frost Giant,Frostriese
+Frost Peaks,Frost Peaks,Frostgipfel
+Fire Imp,Fire Imp,Feuerkobold
+Magma Golem,Magma Golem,Magmagolem
+Salamander,Salamander,Salamander
+Ash Wraith,Ash Wraith,Aschegeist
+Inferno Drake,Inferno Drake,Infernodrache
+Ember Volcano,Ember Volcano,Glutvulkan
+Monster Hunter,Monster Hunter,Monsterjäger
+Defeat 100 monsters.,Defeat 100 monsters.,Besiege 100 Monster.
+Siege Breaker,Siege Breaker,Belagerungsbrecher
+Destroy 25 enemy bases.,Destroy 25 enemy bases.,Zerstöre 25 Feindbasen.
+Explorer,Explorer,Entdecker
+Reach stage 25.,Reach stage 25.,Erreiche Stufe 25.
+Conqueror,Conqueror,Eroberer
+Reach stage 100.,Reach stage 100.,Erreiche Stufe 100.
+Boss Slayer,Boss Slayer,Bossbezwinger
+Defeat 25 bosses.,Defeat 25 bosses.,Besiege 25 Bosse.
+Reborn,Reborn,Wiedergeboren
+Rebirth for the first time.,Rebirth for the first time.,Werde zum ersten Mal wiedergeboren.
+Air Defense,Air Defense,Luftabwehr
+Defeat 50 flying monsters.,Defeat 50 flying monsters.,Besiege 50 fliegende Monster.
+Full Squad,Full Squad,Voller Trupp
+Recruit all 12 heroes in one run.,Recruit all 12 heroes in one run.,Wirb in einem Lauf alle 12 Helden an.
+Tycoon,Tycoon,Magnat
+Own all 6 income sources in one run.,Own all 6 income sources in one run.,Besitze in einem Lauf alle 6 Einkommensquellen.
+Star Power,Star Power,Sternenkraft
+Earn 5 hero stars.,Earn 5 hero stars.,Verdiene 5 Heldensterne.
+Coins,Coins,Münzen
+Gems,Gems,Edelsteine
+Day 1,Day 1,Tag 1
+Day 2,Day 2,Tag 2
+Day 3,Day 3,Tag 3
+Day 4,Day 4,Tag 4
+Day 5,Day 5,Tag 5
+Day 6,Day 6,Tag 6
+Day 7,Day 7,Tag 7
+Handful of Gems,Handful of Gems,Handvoll Edelsteine
+100 gems,100 gems,100 Edelsteine
+Chest of Gems,Chest of Gems,Edelsteintruhe
+650 gems (best value),650 gems (best value),650 Edelsteine (bester Preis)
+Starter Pack,Starter Pack,Starterpaket
+150 gems + 5 souls,150 gems + 5 souls,150 Edelsteine + 5 Seelen
+"Start again from stage 1 with no gold, and earn %d souls for permanent relics. Your heroes stay.","Start again from stage 1 with no gold, and earn %d souls for permanent relics. Your heroes stay.",Beginne wieder bei Stufe 1 ohne Gold und erhalte %d Seelen für dauerhafte Relikte. Deine Helden bleiben.
+"Rebirth now for %d souls. Stage, gold, hero levels and income reset; heroes, relics and stars stay.","Rebirth now for %d souls. Stage, gold, hero levels and income reset; heroes, relics and stars stay.","Jetzt wiedergeboren werden für %d Seelen. Stufe, Gold, Heldenlevel und Erträge werden zurückgesetzt; Helden, Relikte und Sterne bleiben."
+Open,Open,Öffnen
+Open again,Open again,Nochmal
+Hero chest,Hero chest,Heldentruhe
+Collect all 12 heroes.,Collect all 12 heroes.,Sammle alle 12 Helden.
+Chest keys,Chest keys,Truhenschlüssel
+New hero!,New hero!,Neuer Held!
+OK,OK,OK
+Collection,Collection,Sammlung

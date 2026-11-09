@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BlastSkill" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Skills/blast_skill.gd" id="1_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Skills/skill_fireball.tres" id="9_cast_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/skill_fireball.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_skill")
+damage_multiplier = 3.0
+radius = 110.0
+effect_color = Color(1.0, 0.55, 0.2, 1)
+id = &"fireball"
+title = "Fireball"
+cooldown_seconds = 7.0
+cast_sound = ExtResource("9_cast_sound")
+icon = ExtResource("20_icon")

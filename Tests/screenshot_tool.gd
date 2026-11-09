@@ -1,12 +1,15 @@
 ## Captures a screenshot of any scene after a delay — handy for checking
-## layouts and for store screenshots. Must run with a window (not headless):
-##   godot --path . --resolution 720x1280 res://Tests/ScreenshotTool.tscn -- scene=res://Scenes/Menus/MainMenu/MainMenu.tscn frames=90 out=/tmp/menu.png [popup=res://...tscn] [level=survivor]
+## layouts and for store screenshots. Must run with a window (not headless);
+## it runs muted and on the test savegame (Global.is_test_run), not yours:
+##   godot --path . --audio-driver Dummy --resolution 720x1280 res://Tests/ScreenshotTool.tscn -- scene=res://Scenes/Menus/MainMenu/MainMenu.tscn frames=90 out=/tmp/menu.png [popup=res://...tscn] [level=survivor]
 ##
 ## Dependencies: SceneManager, UI autoloads
 extends Node
 
 
 func _ready() -> void:
+	# Tests never make sound. Muting the bus (not Settings) leaves the saved volumes alone.
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Master"), true)
 	_run.call_deferred()
 
 

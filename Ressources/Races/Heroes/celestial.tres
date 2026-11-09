@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HeroRace" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/hero_race.gd" id="1_race"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/race_celestial.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_race")
+id = &"celestial"
+display_name = "Celestial"
+color = Color(0.8, 0.85, 1.0, 1)
+synergy_stat = 0
+synergy_thresholds = PackedInt32Array(2, 3)
+synergy_bonuses = PackedFloat32Array(0.15, 0.3)
+icon = ExtResource("20_icon")

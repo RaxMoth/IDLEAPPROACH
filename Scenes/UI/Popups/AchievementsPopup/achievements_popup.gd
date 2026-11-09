@@ -25,13 +25,13 @@ func _create_row(achievement: AchievementData, is_unlocked: bool) -> Control:
 	column.add_theme_constant_override("separation", 6)
 	card.add_child(column)
 	var title_label: Label = Label.new()
-	title_label.text = ("✓ " if is_unlocked else "") + achievement.title
+	title_label.text = ("✓ " if is_unlocked else "") + tr(achievement.title)
 	if is_unlocked:
 		title_label.add_theme_color_override("font_color", Color(0.45, 0.9, 0.55))
 	column.add_child(title_label)
 	var description_label: Label = Label.new()
 	description_label.theme_type_variation = &"SmallLabel"
-	description_label.text = achievement.description
+	description_label.text = tr(achievement.description)
 	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(description_label)
 	var progress_bar: ProgressBar = ProgressBar.new()

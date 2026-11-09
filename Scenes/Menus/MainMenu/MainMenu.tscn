@@ -31,11 +31,11 @@ theme_override_constants/separation = 24
 [node name="TopBar" type="HBoxContainer" parent="SafeArea/Layout"]
 layout_mode = 2
 
-[node name="CoinsDisplay" type="PanelContainer" parent="SafeArea/Layout/TopBar"]
+[node name="SoulsDisplay" type="PanelContainer" parent="SafeArea/Layout/TopBar"]
 layout_mode = 2
 size_flags_vertical = 4
 script = ExtResource("3_currency_d")
-currency_id = &"coins"
+currency_id = &"souls"
 
 [node name="GemsDisplay" type="PanelContainer" parent="SafeArea/Layout/TopBar"]
 layout_mode = 2

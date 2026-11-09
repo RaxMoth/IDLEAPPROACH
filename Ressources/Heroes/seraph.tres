@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="HeroData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/hero_data.gd" id="1_hero_data"]
+[ext_resource type="Script" path="res://Scripts/Resources/star_bonus.gd" id="star_bonus_script"]
+[ext_resource type="Resource" path="res://Ressources/Races/Heroes/celestial.tres" id="3_race"]
+[ext_resource type="Resource" path="res://Ressources/Skills/skill_judgment.tres" id="2_skill"]
+[ext_resource type="Resource" path="res://Ressources/Audio/Attacks/attack_holy.tres" id="9_attack_sound"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Heroes/seraph.png" id="20_art"]
+
+[sub_resource type="Resource" id="star_1"]
+script = ExtResource("star_bonus_script")
+stat = 0
+amount = 0.15
+scope = 0
+
+[sub_resource type="Resource" id="star_2"]
+script = ExtResource("star_bonus_script")
+stat = 1
+amount = 0.2
+scope = 1
+
+[sub_resource type="Resource" id="star_3"]
+script = ExtResource("star_bonus_script")
+stat = 1
+amount = 0.5
+scope = 2
+race = ExtResource("3_race")
+
+[sub_resource type="Resource" id="star_4"]
+script = ExtResource("star_bonus_script")
+stat = 5
+amount = 0.08
+scope = 1
+
+[sub_resource type="Resource" id="star_5"]
+script = ExtResource("star_bonus_script")
+stat = 0
+amount = 0.35
+scope = 1
+
+[resource]
+script = ExtResource("1_hero_data")
+id = &"seraph"
+race = ExtResource("3_race")
+rarity = 3
+display_name = "Seraph"
+role = "Radiant flying archer"
+color = Color(1.0, 0.95, 0.8, 1)
+shape_kind = 3
+visual_size = Vector2(64, 64)
+skill = ExtResource("2_skill")
+attack_style = 1
+layer = 1
+base_damage = 26000.0
+attack_interval_seconds = 1.0
+base_health = 40000.0
+defense = 0.1
+crit_chance = 0.15
+crit_multiplier = 2.5
+move_speed = 200.0
+attack_range = 260.0
+base_cost = 20000000.0
+cost_growth = 1.075
+attack_sound = ExtResource("9_attack_sound")
+icon = ExtResource("20_art")
+star_bonuses = Array[ExtResource("star_bonus_script")]([SubResource("star_1"), SubResource("star_2"), SubResource("star_3"), SubResource("star_4"), SubResource("star_5")])

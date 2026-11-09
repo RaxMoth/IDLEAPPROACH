@@ -1,10 +1,16 @@
-## Stateless runtime helpers: group queries, geometry, spawning roots, timing.
+## Stateless runtime helpers: group queries, geometry, spawning roots, timing,
+## test-run detection.
 ##
 ## Rule: nothing in here may hold mutable game state. If you need state,
 ## it belongs in a component, a Resource or one of the service autoloads.
 ##
 ## Dependencies: Types autoload
 extends Node
+
+## Scenes in this project folder are tests (smoke test, screenshot tool).
+const TESTS_FOLDER: String = "Tests/"
+## user:// files used while a test runs start with this.
+const TEST_FILE_PREFIX: String = "test_"
 
 # ============================================
 # TREE & GROUP QUERIES
@@ -122,3 +128,24 @@ func unix_now() -> int:
 func local_day_index(unix_time: int) -> int:
 	var timezone_offset_seconds: int = int(Time.get_time_zone_from_system().get("bias", 0)) * 60
 	return floori(float(unix_time + timezone_offset_seconds) / 86400.0)
+
+
+# ============================================
+# TESTS
+# ============================================
+
+## True when the scene being run is a test under res://Tests/ (the smoke test,
+## the screenshot tool or a probe started from the command line or the editor).
+func is_test_run() -> bool:
+	for argument: String in OS.get_cmdline_args():
+		if argument.trim_prefix("res://").begins_with(TESTS_FOLDER) and argument.ends_with(".tscn"):
+			return true
+	return false
+
+
+## [param user_path] while playing; its test_ twin during a test run, so tests
+## never read or overwrite the player's savegame and preferences.
+func resolve_user_path(user_path: String) -> String:
+	if not is_test_run():
+		return user_path
+	return "user://" + TEST_FILE_PREFIX + user_path.trim_prefix("user://")

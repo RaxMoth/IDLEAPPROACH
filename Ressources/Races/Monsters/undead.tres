@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MonsterRace" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/monster_race.gd" id="1_race"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/race_undead.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_race")
+id = &"undead"
+display_name = "Undead"
+color = Color(0.7, 0.6, 0.9, 1)
+trait_description = "Gets up once at 30% health."
+revive_health_fraction = 0.3
+icon = ExtResource("20_icon")

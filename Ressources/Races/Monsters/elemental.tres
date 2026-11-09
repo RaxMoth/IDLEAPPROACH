@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MonsterRace" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/monster_race.gd" id="1_race"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/race_elemental.png" id="20_icon"]
+
+[resource]
+script = ExtResource("1_race")
+id = &"elemental"
+display_name = "Elemental"
+color = Color(0.4, 0.8, 1.0, 1)
+trait_description = "Armored (+15% defense), but critical hits deal 50% more."
+defense_bonus = 0.15
+crit_damage_taken_multiplier = 1.5
+icon = ExtResource("20_icon")

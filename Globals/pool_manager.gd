@@ -103,8 +103,14 @@ func get_idle_count() -> int:
 	return total_idle
 
 
-func _detach(instance: Node) -> void:
-	if not is_instance_valid(instance) or not is_in_pool(instance):
+# Variant, not Node: if the old parent was freed in the same frame, the
+# instance went with it, and a typed parameter would reject the freed object
+# before is_instance_valid() could skip it.
+func _detach(pending_instance: Variant) -> void:
+	if not is_instance_valid(pending_instance):
+		return
+	var instance: Node = pending_instance as Node
+	if not is_in_pool(instance):
 		return
 	var parent: Node = instance.get_parent()
 	if parent != null:

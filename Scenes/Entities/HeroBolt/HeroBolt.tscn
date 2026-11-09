@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Entities/HeroBolt/hero_bolt.gd" id="1_hero_bolt"]
+[ext_resource type="Script" path="res://Scripts/Utils/placeholder_shape.gd" id="2_placeholde"]
+
+[node name="HeroBolt" type="Node2D"]
+z_index = 20
+script = ExtResource("1_hero_bolt")
+
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_placeholde")
+shape_kind = 4
+size = Vector2(34, 12)
+color = Color(1, 1, 1, 1)
+outline_width = 0.0

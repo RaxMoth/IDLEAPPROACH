@@ -1,12 +1,16 @@
 ## Camera2D with target following, trauma-based screen shake (respects the
 ## Screen Shake setting) and optional one-finger pan + pinch zoom for
-## strategy / tower-defense maps.
+## strategy / tower-defense maps. Panning can be locked to one axis and kept
+## inside pan_limits (e.g. a long side-scrolling lane).
 ##
 ## Shake from anywhere: Events.camera_shake_requested.emit(0.4)
 ##
 ## Dependencies: Events, Settings autoloads
 class_name GameCamera
 extends Camera2D
+
+## The player dragged the view (touch pan); e.g. turn off an auto-follow.
+signal user_panned
 
 @export var follow_target: Node2D
 @export_group("Shake")
@@ -15,6 +19,10 @@ extends Camera2D
 @export var trauma_decay_per_second: float = 1.6
 @export_group("Touch Controls")
 @export var enable_touch_pan: bool = false
+## Which axes a drag pans (1 = free, 0 = locked); (1, 0) = horizontal only.
+@export var pan_axes: Vector2 = Vector2.ONE
+## World area the view must stay inside while panning (zero size = unlimited).
+@export var pan_limits: Rect2 = Rect2()
 @export var enable_pinch_zoom: bool = false
 @export var min_zoom: float = 0.6
 @export var max_zoom: float = 2.0
@@ -35,6 +43,29 @@ func _ready() -> void:
 	if follow_target != null:
 		global_position = follow_target.global_position
 		reset_smoothing.call_deferred()
+
+
+## Moves the view by [param world_delta] on the pan axes, inside pan_limits.
+func pan_by(world_delta: Vector2) -> void:
+	global_position += world_delta * pan_axes
+	clamp_to_pan_limits()
+
+
+## Centers the view on [param world_x] (e.g. a minimap tap), inside pan_limits.
+func center_on_x(world_x: float) -> void:
+	global_position.x = world_x
+	clamp_to_pan_limits()
+
+
+## Keeps the visible area inside pan_limits on the pan axes.
+func clamp_to_pan_limits() -> void:
+	if not pan_limits.has_area():
+		return
+	var half_view: Vector2 = get_viewport_rect().size / zoom * 0.5
+	if pan_axes.x != 0.0:
+		global_position.x = _clamp_axis(global_position.x, pan_limits.position.x + half_view.x, pan_limits.end.x - half_view.x)
+	if pan_axes.y != 0.0:
+		global_position.y = _clamp_axis(global_position.y, pan_limits.position.y + half_view.y, pan_limits.end.y - half_view.y)
 
 
 func add_trauma(amount: float) -> void:
@@ -80,7 +111,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	_active_touches[drag.index] = drag.position
 	if _active_touches.size() == 1 and enable_touch_pan and follow_target == null:
-		global_position -= drag.relative / zoom
+		pan_by(-drag.relative / zoom)
+		user_panned.emit()
 	elif _active_touches.size() == 2 and enable_pinch_zoom:
 		var touch_points: Array = _active_touches.values()
 		var first_point: Vector2 = touch_points[0]
@@ -89,3 +121,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			var zoom_factor: float = clampf(zoom.x * pinch_distance / _last_pinch_distance, min_zoom, max_zoom)
 			zoom = Vector2.ONE * zoom_factor
 		_last_pinch_distance = pinch_distance
+
+
+## A finger is on the screen (touch pan / pinch input), e.g. to hold an
+## auto-follow until the player lets go.
+func is_touching() -> bool:
+	return not _active_touches.is_empty()
+
+
+## Clamps to [min, max]; when the view is wider than the limits it centers instead.
+func _clamp_axis(value: float, min_value: float, max_value: float) -> float:
+	if min_value > max_value:
+		return (min_value + max_value) * 0.5
+	return clampf(value, min_value, max_value)

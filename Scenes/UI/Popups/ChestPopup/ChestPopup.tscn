@@ -1,0 +1,158 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/UI/Popups/ChestPopup/chest_popup.gd" id="1_chest_popup"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Effects/rays.png" id="2_rays"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Chest/hero_chest_closed.png" id="3_chest"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/HeroCard/HeroCard.tscn" id="4_hero_card"]
+[ext_resource type="Script" path="res://Scripts/UI/icon_value.gd" id="5_icon_value"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/shards.png" id="6_shards"]
+[ext_resource type="Texture2D" path="res://Assets/Art/Icons/key.png" id="7_key"]
+[ext_resource type="Script" path="res://Scripts/UI/chest_odds_row.gd" id="8_odds_row"]
+
+[node name="ChestPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_chest_popup")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Hero chest"
+horizontal_alignment = 1
+
+[node name="Stage" type="Control" parent="CenterContainer/Panel/Content"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Rays" type="TextureRect" parent="CenterContainer/Panel/Content/Stage"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.0
+offset_top = -70.0
+offset_right = 230.0
+offset_bottom = 390.0
+grow_horizontal = 2
+pivot_offset = Vector2(230, 230)
+mouse_filter = 2
+texture = ExtResource("2_rays")
+expand_mode = 1
+
+[node name="Chest" type="TextureRect" parent="CenterContainer/Panel/Content/Stage"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -190.0
+offset_right = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(110, 150)
+mouse_filter = 2
+texture = ExtResource("3_chest")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HeroCard" parent="CenterContainer/Panel/Content/Stage" instance=ExtResource("4_hero_card")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_top = 34.0
+offset_right = 95.0
+offset_bottom = 286.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="ResultRow" type="HBoxContainer" parent="CenterContainer/Panel/Content"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+alignment = 1
+
+[node name="NewLabel" type="Label" parent="CenterContainer/Panel/Content/ResultRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+theme_override_colors/font_color = Color(1, 0.84, 0.3, 1)
+text = "New hero!"
+
+[node name="ShardValue" type="HBoxContainer" parent="CenterContainer/Panel/Content/ResultRow"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("5_icon_value")
+icon = ExtResource("6_shards")
+text = "+5"
+icon_size = 48.0
+label_variation = &"HeaderLabel"
+
+[node name="OddsRow" type="HBoxContainer" parent="CenterContainer/Panel/Content/ResultRow"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("8_odds_row")
+
+[node name="Buttons" type="HBoxContainer" parent="CenterContainer/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="OpenButton" type="Button" parent="CenterContainer/Panel/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"GoldButton"
+theme_override_constants/icon_max_width = 38
+text = "Open"
+icon = ExtResource("7_key")
+
+[node name="CloseButton" type="Button" parent="CenterContainer/Panel/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SecondaryButton"
+text = "Close"
+
+[connection signal="pressed" from="CenterContainer/Panel/Content/Buttons/OpenButton" to="." method="_on_open_button_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/Content/Buttons/CloseButton" to="." method="_on_close_button_pressed"]

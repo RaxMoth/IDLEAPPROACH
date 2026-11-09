@@ -60,10 +60,11 @@ func set_max_health(new_max_health: float, heal_difference: bool = true) -> void
 
 
 ## Full reset — used when pooled entities are reused.
-func revive(new_max_health: float = -1.0) -> void:
+## Brings the entity back. [param health_fraction] < 1 revives it hurt (e.g. undead at 30%).
+func revive(new_max_health: float = -1.0, health_fraction: float = 1.0) -> void:
 	if new_max_health > 0.0:
 		max_health = new_max_health
-	current_health = max_health
+	current_health = max_health * clampf(health_fraction, 0.0, 1.0)
 	is_dead = false
 	_invulnerable_until_msec = 0
 	health_changed.emit(current_health, max_health)

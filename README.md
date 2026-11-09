@@ -3,7 +3,7 @@
 A mobile-first foundation for 2D Godot games. Copy it, rename it, delete the
 examples you don't need, and start building your game instead of the plumbing.
 
-- **Engine:** Godot 4.5+ (tested on 4.5 and 4.7.2), GDScript, fully typed
+- **Engine:** Godot 4.7+ (tested on 4.7.2), GDScript, fully typed
 - **Renderer:** GL Compatibility (widest Android/iOS/Web device support)
 - **Layout:** 720×1280 portrait, `canvas_items` stretch + `expand` aspect, notch-safe UI
 - **Addon:** [godot_state_charts](addons/godot_state_charts) for entity and level state
@@ -89,9 +89,13 @@ godot --headless --fixed-fps 60 res://Tests/SmokeTest.tscn
 ```
 
 Boots every menu and level, exercises pause / win / lose / results, every
-popup and the save round-trip (exit code 0 = pass; it resets the local save).
+popup and the save round-trip (exit code 0 = pass).
 `Tests/ScreenshotTool.tscn` captures screenshots of any scene for layout checks
 or store listings (usage in the script header).
+
+Every scene under `Tests/` runs on its own files, `user://test_savegame.json`
+and `user://test_settings.cfg`. Running tests never touches your own progress
+or preferences.
 
 ---
 
